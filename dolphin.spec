@@ -4,7 +4,7 @@
 #
 Name     : dolphin
 Version  : 18.07.90
-Release  : 5
+Release  : 6
 URL      : https://github.com/KDE/dolphin/archive/v18.07.90.tar.gz
 Source0  : https://github.com/KDE/dolphin/archive/v18.07.90.tar.gz
 Summary  : No detailed summary available
