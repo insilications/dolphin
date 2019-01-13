@@ -4,7 +4,7 @@
 #
 Name     : dolphin
 Version  : 18.12.1
-Release  : 18
+Release  : 19
 URL      : https://github.com/KDE/dolphin/archive/v18.12.1.tar.gz
 Source0  : https://github.com/KDE/dolphin/archive/v18.12.1.tar.gz
 Summary  : KDE File Manager
@@ -14,13 +14,34 @@ Requires: dolphin-bin = %{version}-%{release}
 Requires: dolphin-data = %{version}-%{release}
 Requires: dolphin-lib = %{version}-%{release}
 Requires: dolphin-license = %{version}-%{release}
+BuildRequires : attica-dev
 BuildRequires : baloo-dev
 BuildRequires : baloo-widgets-dev
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : kactivities-dev
+BuildRequires : kbookmarks-dev
+BuildRequires : kcmutils-dev
+BuildRequires : kcodecs-dev
+BuildRequires : kcompletion-dev
+BuildRequires : kcrash-dev
+BuildRequires : kdbusaddons-dev
+BuildRequires : kdelibs4support-dev
 BuildRequires : kfilemetadata-dev
+BuildRequires : kiconthemes-dev
+BuildRequires : kinit-dev
+BuildRequires : kio-dev
+BuildRequires : kitemviews-dev
+BuildRequires : kjobwidgets-dev
+BuildRequires : knewstuff-dev
+BuildRequires : knotifications-dev
+BuildRequires : kparts-dev
+BuildRequires : ktextwidgets-dev
+BuildRequires : kwidgetsaddons-dev
+BuildRequires : kxmlgui-dev
 BuildRequires : phonon-dev
+BuildRequires : solid-dev
+BuildRequires : sonnet-dev
 
 %description
 See http://dolphin.kde.org for information about Dolphin.
@@ -89,7 +110,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1547135442
+export SOURCE_DATE_EPOCH=1547417249
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -97,7 +118,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1547135442
+export SOURCE_DATE_EPOCH=1547417249
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/dolphin
 cp COPYING %{buildroot}/usr/share/package-licenses/dolphin/COPYING
@@ -147,7 +168,6 @@ popd
 /usr/lib64/cmake/DolphinVcs/DolphinVcsTargets-relwithdebinfo.cmake
 /usr/lib64/cmake/DolphinVcs/DolphinVcsTargets.cmake
 /usr/lib64/libdolphinvcs.so
-/usr/lib64/libkdeinit5_dolphin.so
 
 %files doc
 %defattr(0644,root,root,0755)
@@ -179,6 +199,7 @@ popd
 /usr/lib64/libdolphinprivate.so.5.0.0
 /usr/lib64/libdolphinvcs.so.5
 /usr/lib64/libdolphinvcs.so.5.0.0
+/usr/lib64/libkdeinit5_dolphin.so
 /usr/lib64/qt5/plugins/dolphinpart.so
 /usr/lib64/qt5/plugins/kcm_dolphingeneral.so
 /usr/lib64/qt5/plugins/kcm_dolphinnavigation.so
