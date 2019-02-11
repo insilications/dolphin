@@ -1,5 +1,5 @@
 PKG_NAME := dolphin
-URL = https://github.com/KDE/dolphin/archive/v18.12.2.tar.gz
+URL = https://download.kde.org/stable/applications/18.12.2/src/dolphin-18.12.2.tar.xz
 ARCHIVES = 
 
 include ../common/Makefile.common

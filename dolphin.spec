@@ -4,16 +4,17 @@
 #
 Name     : dolphin
 Version  : 18.12.2
-Release  : 22
-URL      : https://github.com/KDE/dolphin/archive/v18.12.2.tar.gz
-Source0  : https://github.com/KDE/dolphin/archive/v18.12.2.tar.gz
-Summary  : KDE File Manager
+Release  : 23
+URL      : https://download.kde.org/stable/applications/18.12.2/src/dolphin-18.12.2.tar.xz
+Source0  : https://download.kde.org/stable/applications/18.12.2/src/dolphin-18.12.2.tar.xz
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0
 Requires: dolphin-bin = %{version}-%{release}
 Requires: dolphin-data = %{version}-%{release}
 Requires: dolphin-lib = %{version}-%{release}
 Requires: dolphin-license = %{version}-%{release}
+Requires: dolphin-locales = %{version}-%{release}
 BuildRequires : attica-dev
 BuildRequires : baloo-dev
 BuildRequires : baloo-widgets-dev
@@ -102,6 +103,14 @@ Group: Default
 license components for the dolphin package.
 
 
+%package locales
+Summary: locales components for the dolphin package.
+Group: Default
+
+%description locales
+locales components for the dolphin package.
+
+
 %prep
 %setup -q -n dolphin-18.12.2
 
@@ -110,7 +119,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1549646168
+export SOURCE_DATE_EPOCH=1549859756
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -118,7 +127,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1549646168
+export SOURCE_DATE_EPOCH=1549859756
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/dolphin
 cp COPYING %{buildroot}/usr/share/package-licenses/dolphin/COPYING
@@ -126,6 +135,7 @@ cp COPYING.DOC %{buildroot}/usr/share/package-licenses/dolphin/COPYING.DOC
 pushd clr-build
 %make_install
 popd
+%find_lang dolphin
 
 %files
 %defattr(-,root,root,-)
@@ -153,6 +163,7 @@ popd
 /usr/share/kservices5/kcmdolphinservices.desktop
 /usr/share/kservices5/kcmdolphinviewmodes.desktop
 /usr/share/kservicetypes5/fileviewversioncontrolplugin.desktop
+/usr/share/locale/fi/LC_SCRIPTS/dolphin/dolphin.js
 /usr/share/metainfo/org.kde.dolphin.appdata.xml
 /usr/share/xdg/dolphin.categories
 /usr/share/xdg/servicemenu.knsrc
@@ -171,6 +182,40 @@ popd
 
 %files doc
 %defattr(0644,root,root,0755)
+/usr/share/doc/HTML/ca/dolphin/default-ui.png
+/usr/share/doc/HTML/ca/dolphin/grouping-view.png
+/usr/share/doc/HTML/ca/dolphin/index.cache.bz2
+/usr/share/doc/HTML/ca/dolphin/index.docbook
+/usr/share/doc/HTML/ca/dolphin/locationbar-breadcrumb.png
+/usr/share/doc/HTML/ca/dolphin/locationbar-context-menu.png
+/usr/share/doc/HTML/ca/dolphin/locationbar-editable.png
+/usr/share/doc/HTML/ca/dolphin/locationbar-kioslaves-menu.png
+/usr/share/doc/HTML/ca/dolphin/locationbar-places-icon.png
+/usr/share/doc/HTML/ca/dolphin/nepomuk-search-more-options.png
+/usr/share/doc/HTML/ca/dolphin/nepomuk-search.png
+/usr/share/doc/HTML/ca/dolphin/preferences-general-behavior.png
+/usr/share/doc/HTML/ca/dolphin/preferences-navigation.png
+/usr/share/doc/HTML/ca/dolphin/preferences-services.png
+/usr/share/doc/HTML/ca/dolphin/preferences-startup.png
+/usr/share/doc/HTML/ca/dolphin/preferences-trash.png
+/usr/share/doc/HTML/ca/dolphin/preferences-viewmodes-icons.png
+/usr/share/doc/HTML/ca/dolphin/toolbar-navigation.png
+/usr/share/doc/HTML/ca/dolphin/toolbar-view-appearance.png
+/usr/share/doc/HTML/ca/dolphin/toolbar.png
+/usr/share/doc/HTML/ca/dolphin/viewproperties-dialog.png
+/usr/share/doc/HTML/de/dolphin/default-ui.png
+/usr/share/doc/HTML/de/dolphin/index.cache.bz2
+/usr/share/doc/HTML/de/dolphin/index.docbook
+/usr/share/doc/HTML/de/dolphin/locationbar-breadcrumb.png
+/usr/share/doc/HTML/de/dolphin/locationbar-editable.png
+/usr/share/doc/HTML/de/dolphin/preferences-general-behavior.png
+/usr/share/doc/HTML/de/dolphin/preferences-navigation.png
+/usr/share/doc/HTML/de/dolphin/preferences-startup.png
+/usr/share/doc/HTML/de/dolphin/preferences-trash.png
+/usr/share/doc/HTML/de/dolphin/preferences-viewmodes-icons.png
+/usr/share/doc/HTML/de/dolphin/toolbar-navigation.png
+/usr/share/doc/HTML/de/dolphin/toolbar-view-appearance.png
+/usr/share/doc/HTML/de/dolphin/viewproperties-dialog.png
 /usr/share/doc/HTML/en/dolphin/default-ui.png
 /usr/share/doc/HTML/en/dolphin/grouping-view.png
 /usr/share/doc/HTML/en/dolphin/index.cache.bz2
@@ -192,6 +237,78 @@ popd
 /usr/share/doc/HTML/en/dolphin/toolbar-view-appearance.png
 /usr/share/doc/HTML/en/dolphin/toolbar.png
 /usr/share/doc/HTML/en/dolphin/viewproperties-dialog.png
+/usr/share/doc/HTML/es/dolphin/index.cache.bz2
+/usr/share/doc/HTML/es/dolphin/index.docbook
+/usr/share/doc/HTML/it/dolphin/index.cache.bz2
+/usr/share/doc/HTML/it/dolphin/index.docbook
+/usr/share/doc/HTML/nl/dolphin/default-ui.png
+/usr/share/doc/HTML/nl/dolphin/index.cache.bz2
+/usr/share/doc/HTML/nl/dolphin/index.docbook
+/usr/share/doc/HTML/nl/dolphin/locationbar-breadcrumb.png
+/usr/share/doc/HTML/nl/dolphin/locationbar-editable.png
+/usr/share/doc/HTML/nl/dolphin/preferences-general-behavior.png
+/usr/share/doc/HTML/nl/dolphin/preferences-navigation.png
+/usr/share/doc/HTML/nl/dolphin/preferences-startup.png
+/usr/share/doc/HTML/nl/dolphin/preferences-trash.png
+/usr/share/doc/HTML/nl/dolphin/preferences-viewmodes-icons.png
+/usr/share/doc/HTML/nl/dolphin/toolbar-navigation.png
+/usr/share/doc/HTML/nl/dolphin/toolbar-view-appearance.png
+/usr/share/doc/HTML/nl/dolphin/viewproperties-dialog.png
+/usr/share/doc/HTML/pt/dolphin/index.cache.bz2
+/usr/share/doc/HTML/pt/dolphin/index.docbook
+/usr/share/doc/HTML/pt_BR/dolphin/default-ui.png
+/usr/share/doc/HTML/pt_BR/dolphin/grouping-view.png
+/usr/share/doc/HTML/pt_BR/dolphin/index.cache.bz2
+/usr/share/doc/HTML/pt_BR/dolphin/index.docbook
+/usr/share/doc/HTML/pt_BR/dolphin/locationbar-breadcrumb.png
+/usr/share/doc/HTML/pt_BR/dolphin/locationbar-context-menu.png
+/usr/share/doc/HTML/pt_BR/dolphin/locationbar-editable.png
+/usr/share/doc/HTML/pt_BR/dolphin/locationbar-kioslaves-menu.png
+/usr/share/doc/HTML/pt_BR/dolphin/locationbar-places-icon.png
+/usr/share/doc/HTML/pt_BR/dolphin/nepomuk-search-more-options.png
+/usr/share/doc/HTML/pt_BR/dolphin/nepomuk-search.png
+/usr/share/doc/HTML/pt_BR/dolphin/preferences-general-behavior.png
+/usr/share/doc/HTML/pt_BR/dolphin/preferences-navigation.png
+/usr/share/doc/HTML/pt_BR/dolphin/preferences-services.png
+/usr/share/doc/HTML/pt_BR/dolphin/preferences-startup.png
+/usr/share/doc/HTML/pt_BR/dolphin/preferences-trash.png
+/usr/share/doc/HTML/pt_BR/dolphin/preferences-viewmodes-icons.png
+/usr/share/doc/HTML/pt_BR/dolphin/toolbar-navigation.png
+/usr/share/doc/HTML/pt_BR/dolphin/toolbar-view-appearance.png
+/usr/share/doc/HTML/pt_BR/dolphin/toolbar.png
+/usr/share/doc/HTML/pt_BR/dolphin/viewproperties-dialog.png
+/usr/share/doc/HTML/sr/dolphin/index.cache.bz2
+/usr/share/doc/HTML/sr/dolphin/index.docbook
+/usr/share/doc/HTML/sv/dolphin/bookmarkbutton.png
+/usr/share/doc/HTML/sv/dolphin/breadcrumb.png
+/usr/share/doc/HTML/sv/dolphin/configurationwindow.png
+/usr/share/doc/HTML/sv/dolphin/configurationwindow2.png
+/usr/share/doc/HTML/sv/dolphin/directorypath.png
+/usr/share/doc/HTML/sv/dolphin/dolphin.png
+/usr/share/doc/HTML/sv/dolphin/hiddenfolder.png
+/usr/share/doc/HTML/sv/dolphin/index.cache.bz2
+/usr/share/doc/HTML/sv/dolphin/index.docbook
+/usr/share/doc/HTML/sv/dolphin/split.png
+/usr/share/doc/HTML/sv/dolphin/toolbarbuttons.png
+/usr/share/doc/HTML/sv/dolphin/workspacebuttons.png
+/usr/share/doc/HTML/uk/dolphin/default-ui.png
+/usr/share/doc/HTML/uk/dolphin/grouping-view.png
+/usr/share/doc/HTML/uk/dolphin/index.cache.bz2
+/usr/share/doc/HTML/uk/dolphin/index.docbook
+/usr/share/doc/HTML/uk/dolphin/locationbar-breadcrumb.png
+/usr/share/doc/HTML/uk/dolphin/locationbar-context-menu.png
+/usr/share/doc/HTML/uk/dolphin/locationbar-places-icon.png
+/usr/share/doc/HTML/uk/dolphin/nepomuk-search-more-options.png
+/usr/share/doc/HTML/uk/dolphin/nepomuk-search.png
+/usr/share/doc/HTML/uk/dolphin/preferences-general-behavior.png
+/usr/share/doc/HTML/uk/dolphin/preferences-navigation.png
+/usr/share/doc/HTML/uk/dolphin/preferences-services.png
+/usr/share/doc/HTML/uk/dolphin/preferences-startup.png
+/usr/share/doc/HTML/uk/dolphin/preferences-trash.png
+/usr/share/doc/HTML/uk/dolphin/preferences-viewmodes-icons.png
+/usr/share/doc/HTML/uk/dolphin/toolbar-view-appearance.png
+/usr/share/doc/HTML/uk/dolphin/toolbar.png
+/usr/share/doc/HTML/uk/dolphin/viewproperties-dialog.png
 
 %files lib
 %defattr(-,root,root,-)
@@ -210,3 +327,7 @@ popd
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/dolphin/COPYING
 /usr/share/package-licenses/dolphin/COPYING.DOC
+
+%files locales -f dolphin.lang
+%defattr(-,root,root,-)
+
