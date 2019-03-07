@@ -5,12 +5,12 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : dolphin
-Version  : 18.12.2
-Release  : 24
-URL      : https://download.kde.org/stable/applications/18.12.2/src/dolphin-18.12.2.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.12.2/src/dolphin-18.12.2.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.12.2/src/dolphin-18.12.2.tar.xz.sig
-Summary  : No detailed summary available
+Version  : 18.12.3
+Release  : 25
+URL      : https://download.kde.org/stable/applications/18.12.3/src/dolphin-18.12.3.tar.xz
+Source0  : https://download.kde.org/stable/applications/18.12.3/src/dolphin-18.12.3.tar.xz
+Source99 : https://download.kde.org/stable/applications/18.12.3/src/dolphin-18.12.3.tar.xz.sig
+Summary  : KDE File Manager
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0
 Requires: dolphin-bin = %{version}-%{release}
@@ -18,34 +18,13 @@ Requires: dolphin-data = %{version}-%{release}
 Requires: dolphin-lib = %{version}-%{release}
 Requires: dolphin-license = %{version}-%{release}
 Requires: dolphin-locales = %{version}-%{release}
-BuildRequires : attica-dev
 BuildRequires : baloo-dev
 BuildRequires : baloo-widgets-dev
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : kactivities-dev
-BuildRequires : kbookmarks-dev
-BuildRequires : kcmutils-dev
-BuildRequires : kcodecs-dev
-BuildRequires : kcompletion-dev
-BuildRequires : kcrash-dev
-BuildRequires : kdbusaddons-dev
-BuildRequires : kdelibs4support-dev
 BuildRequires : kfilemetadata-dev
-BuildRequires : kiconthemes-dev
-BuildRequires : kinit-dev
-BuildRequires : kio-dev
-BuildRequires : kitemviews-dev
-BuildRequires : kjobwidgets-dev
-BuildRequires : knewstuff-dev
-BuildRequires : knotifications-dev
-BuildRequires : kparts-dev
-BuildRequires : ktextwidgets-dev
-BuildRequires : kwidgetsaddons-dev
-BuildRequires : kxmlgui-dev
 BuildRequires : phonon-dev
-BuildRequires : solid-dev
-BuildRequires : sonnet-dev
 
 %description
 See http://dolphin.kde.org for information about Dolphin.
@@ -75,6 +54,7 @@ Requires: dolphin-lib = %{version}-%{release}
 Requires: dolphin-bin = %{version}-%{release}
 Requires: dolphin-data = %{version}-%{release}
 Provides: dolphin-devel = %{version}-%{release}
+Requires: dolphin = %{version}-%{release}
 
 %description dev
 dev components for the dolphin package.
@@ -115,22 +95,23 @@ locales components for the dolphin package.
 
 
 %prep
-%setup -q -n dolphin-18.12.2
+%setup -q -n dolphin-18.12.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1549878585
+export SOURCE_DATE_EPOCH=1551982878
 mkdir -p clr-build
 pushd clr-build
+export LDFLAGS="${LDFLAGS} -fno-lto"
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1549878585
+export SOURCE_DATE_EPOCH=1551982878
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/dolphin
 cp COPYING %{buildroot}/usr/share/package-licenses/dolphin/COPYING
