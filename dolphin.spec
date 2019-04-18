@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : dolphin
-Version  : 18.12.3
-Release  : 26
-URL      : https://download.kde.org/stable/applications/18.12.3/src/dolphin-18.12.3.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.12.3/src/dolphin-18.12.3.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.12.3/src/dolphin-18.12.3.tar.xz.sig
+Version  : 19.04.0
+Release  : 27
+URL      : https://download.kde.org/stable/applications/19.04.0/src/dolphin-19.04.0.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.04.0/src/dolphin-19.04.0.tar.xz
+Source99 : https://download.kde.org/stable/applications/19.04.0/src/dolphin-19.04.0.tar.xz.sig
 Summary  : KDE File Manager
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0
@@ -18,34 +18,13 @@ Requires: dolphin-data = %{version}-%{release}
 Requires: dolphin-lib = %{version}-%{release}
 Requires: dolphin-license = %{version}-%{release}
 Requires: dolphin-locales = %{version}-%{release}
-BuildRequires : attica-dev
 BuildRequires : baloo-dev
 BuildRequires : baloo-widgets-dev
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : kactivities-dev
-BuildRequires : kbookmarks-dev
-BuildRequires : kcmutils-dev
-BuildRequires : kcodecs-dev
-BuildRequires : kcompletion-dev
-BuildRequires : kcrash-dev
-BuildRequires : kdbusaddons-dev
-BuildRequires : kdelibs4support-dev
 BuildRequires : kfilemetadata-dev
-BuildRequires : kiconthemes-dev
-BuildRequires : kinit-dev
-BuildRequires : kio-dev
-BuildRequires : kitemviews-dev
-BuildRequires : kjobwidgets-dev
-BuildRequires : knewstuff-dev
-BuildRequires : knotifications-dev
-BuildRequires : kparts-dev
-BuildRequires : ktextwidgets-dev
-BuildRequires : kwidgetsaddons-dev
-BuildRequires : kxmlgui-dev
 BuildRequires : phonon-dev
-BuildRequires : solid-dev
-BuildRequires : sonnet-dev
 
 %description
 See http://dolphin.kde.org for information about Dolphin.
@@ -116,14 +95,14 @@ locales components for the dolphin package.
 
 
 %prep
-%setup -q -n dolphin-18.12.3
+%setup -q -n dolphin-19.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1555317467
+export SOURCE_DATE_EPOCH=1555599289
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -131,7 +110,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1555317467
+export SOURCE_DATE_EPOCH=1555599289
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/dolphin
 cp COPYING %{buildroot}/usr/share/package-licenses/dolphin/COPYING
