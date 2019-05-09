@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : dolphin
-Version  : 19.04.0
-Release  : 28
-URL      : https://download.kde.org/stable/applications/19.04.0/src/dolphin-19.04.0.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.04.0/src/dolphin-19.04.0.tar.xz
-Source99 : https://download.kde.org/stable/applications/19.04.0/src/dolphin-19.04.0.tar.xz.sig
+Version  : 19.04.1
+Release  : 29
+URL      : https://download.kde.org/stable/applications/19.04.1/src/dolphin-19.04.1.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.04.1/src/dolphin-19.04.1.tar.xz
+Source99 : https://download.kde.org/stable/applications/19.04.1/src/dolphin-19.04.1.tar.xz.sig
 Summary  : KDE File Manager
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0
@@ -18,34 +18,13 @@ Requires: dolphin-data = %{version}-%{release}
 Requires: dolphin-lib = %{version}-%{release}
 Requires: dolphin-license = %{version}-%{release}
 Requires: dolphin-locales = %{version}-%{release}
-BuildRequires : attica-dev
 BuildRequires : baloo-dev
 BuildRequires : baloo-widgets-dev
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : kactivities-dev
-BuildRequires : kbookmarks-dev
-BuildRequires : kcmutils-dev
-BuildRequires : kcodecs-dev
-BuildRequires : kcompletion-dev
-BuildRequires : kcrash-dev
-BuildRequires : kdbusaddons-dev
-BuildRequires : kdelibs4support-dev
 BuildRequires : kfilemetadata-dev
-BuildRequires : kiconthemes-dev
-BuildRequires : kinit-dev
-BuildRequires : kio-dev
-BuildRequires : kitemviews-dev
-BuildRequires : kjobwidgets-dev
-BuildRequires : knewstuff-dev
-BuildRequires : knotifications-dev
-BuildRequires : kparts-dev
-BuildRequires : ktextwidgets-dev
-BuildRequires : kwidgetsaddons-dev
-BuildRequires : kxmlgui-dev
 BuildRequires : phonon-dev
-BuildRequires : solid-dev
-BuildRequires : sonnet-dev
 
 %description
 See http://dolphin.kde.org for information about Dolphin.
@@ -75,6 +54,7 @@ Requires: dolphin-lib = %{version}-%{release}
 Requires: dolphin-bin = %{version}-%{release}
 Requires: dolphin-data = %{version}-%{release}
 Provides: dolphin-devel = %{version}-%{release}
+Requires: dolphin = %{version}-%{release}
 Requires: dolphin = %{version}-%{release}
 
 %description dev
@@ -116,14 +96,14 @@ locales components for the dolphin package.
 
 
 %prep
-%setup -q -n dolphin-19.04.0
+%setup -q -n dolphin-19.04.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1556997241
+export SOURCE_DATE_EPOCH=1557432358
 mkdir -p clr-build
 pushd clr-build
 export AR=gcc-ar
@@ -138,7 +118,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1556997241
+export SOURCE_DATE_EPOCH=1557432358
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/dolphin
 cp COPYING %{buildroot}/usr/share/package-licenses/dolphin/COPYING
@@ -213,7 +193,6 @@ popd
 /usr/share/doc/HTML/ca/dolphin/toolbar-navigation.png
 /usr/share/doc/HTML/ca/dolphin/toolbar-view-appearance.png
 /usr/share/doc/HTML/ca/dolphin/toolbar.png
-/usr/share/doc/HTML/ca/dolphin/viewproperties-dialog.png
 /usr/share/doc/HTML/de/dolphin/default-ui.png
 /usr/share/doc/HTML/de/dolphin/index.cache.bz2
 /usr/share/doc/HTML/de/dolphin/index.docbook
