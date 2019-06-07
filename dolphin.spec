@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : dolphin
-Version  : 19.04.1
-Release  : 29
-URL      : https://download.kde.org/stable/applications/19.04.1/src/dolphin-19.04.1.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.04.1/src/dolphin-19.04.1.tar.xz
-Source99 : https://download.kde.org/stable/applications/19.04.1/src/dolphin-19.04.1.tar.xz.sig
+Version  : 19.04.2
+Release  : 30
+URL      : https://download.kde.org/stable/applications/19.04.2/src/dolphin-19.04.2.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.04.2/src/dolphin-19.04.2.tar.xz
+Source99 : https://download.kde.org/stable/applications/19.04.2/src/dolphin-19.04.2.tar.xz.sig
 Summary  : KDE File Manager
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0
@@ -96,14 +96,14 @@ locales components for the dolphin package.
 
 
 %prep
-%setup -q -n dolphin-19.04.1
+%setup -q -n dolphin-19.04.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1557432358
+export SOURCE_DATE_EPOCH=1559879798
 mkdir -p clr-build
 pushd clr-build
 export AR=gcc-ar
@@ -118,7 +118,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1557432358
+export SOURCE_DATE_EPOCH=1559879798
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/dolphin
 cp COPYING %{buildroot}/usr/share/package-licenses/dolphin/COPYING
