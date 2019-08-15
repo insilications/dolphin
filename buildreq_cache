@@ -1,4 +1,4 @@
-19.04.3
+19.08.0
 attica-dev
 baloo-dev
 baloo-widgets-dev
@@ -23,5 +23,6 @@ ktextwidgets-dev
 kwidgetsaddons-dev
 kxmlgui-dev
 phonon-dev
+ruby
 solid-dev
 sonnet-dev

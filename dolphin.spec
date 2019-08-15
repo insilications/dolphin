@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : dolphin
-Version  : 19.04.3
-Release  : 31
-URL      : https://download.kde.org/stable/applications/19.04.3/src/dolphin-19.04.3.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.04.3/src/dolphin-19.04.3.tar.xz
-Source99 : https://download.kde.org/stable/applications/19.04.3/src/dolphin-19.04.3.tar.xz.sig
+Version  : 19.08.0
+Release  : 32
+URL      : https://download.kde.org/stable/applications/19.08.0/src/dolphin-19.08.0.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.08.0/src/dolphin-19.08.0.tar.xz
+Source1 : https://download.kde.org/stable/applications/19.08.0/src/dolphin-19.08.0.tar.xz.sig
 Summary  : KDE File Manager
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0
@@ -25,9 +25,12 @@ BuildRequires : buildreq-kde
 BuildRequires : kactivities-dev
 BuildRequires : kfilemetadata-dev
 BuildRequires : phonon-dev
+BuildRequires : ruby
 
 %description
-See http://dolphin.kde.org for information about Dolphin.
+User Documentation
+==================
+See https://userbase.kde.org/Special:myLanguage/Dolphin
 
 %package bin
 Summary: bin components for the dolphin package.
@@ -96,16 +99,17 @@ locales components for the dolphin package.
 
 
 %prep
-%setup -q -n dolphin-19.04.3
+%setup -q -n dolphin-19.08.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1562853677
+export SOURCE_DATE_EPOCH=1565890357
 mkdir -p clr-build
 pushd clr-build
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -119,7 +123,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1562853677
+export SOURCE_DATE_EPOCH=1565890357
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/dolphin
 cp COPYING %{buildroot}/usr/share/package-licenses/dolphin/COPYING
@@ -128,6 +132,7 @@ pushd clr-build
 %make_install
 popd
 %find_lang dolphin
+%find_lang dolphin_servicemenuinstaller
 
 %files
 %defattr(-,root,root,-)
@@ -135,8 +140,7 @@ popd
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/dolphin
-/usr/bin/servicemenudeinstallation
-/usr/bin/servicemenuinstallation
+/usr/bin/servicemenuinstaller
 
 %files data
 %defattr(-,root,root,-)
@@ -149,6 +153,7 @@ popd
 /usr/share/config.kcfg/dolphin_versioncontrolsettings.kcfg
 /usr/share/dbus-1/interfaces/org.freedesktop.FileManager1.xml
 /usr/share/dbus-1/services/org.kde.dolphin.FileManager1.service
+/usr/share/kglobalaccel/org.kde.dolphin.desktop
 /usr/share/kservices5/dolphinpart.desktop
 /usr/share/kservices5/kcmdolphingeneral.desktop
 /usr/share/kservices5/kcmdolphinnavigation.desktop
@@ -157,7 +162,7 @@ popd
 /usr/share/kservicetypes5/fileviewversioncontrolplugin.desktop
 /usr/share/locale/fi/LC_SCRIPTS/dolphin/dolphin.js
 /usr/share/metainfo/org.kde.dolphin.appdata.xml
-/usr/share/xdg/dolphin.categories
+/usr/share/qlogging-categories5/dolphin.categories
 /usr/share/xdg/servicemenu.knsrc
 
 %files dev
@@ -319,6 +324,6 @@ popd
 /usr/share/package-licenses/dolphin/COPYING
 /usr/share/package-licenses/dolphin/COPYING.DOC
 
-%files locales -f dolphin.lang
+%files locales -f dolphin.lang -f dolphin_servicemenuinstaller.lang
 %defattr(-,root,root,-)
 
