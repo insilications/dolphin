@@ -5,12 +5,12 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : dolphin
-Version  : 19.12.0
-Release  : 37
-URL      : https://download.kde.org/stable/release-service/19.12.0/src/dolphin-19.12.0.tar.xz
-Source0  : https://download.kde.org/stable/release-service/19.12.0/src/dolphin-19.12.0.tar.xz
-Source1  : https://download.kde.org/stable/release-service/19.12.0/src/dolphin-19.12.0.tar.xz.sig
-Summary  : No detailed summary available
+Version  : 19.12.1
+Release  : 38
+URL      : https://download.kde.org/stable/release-service/19.12.1/src/dolphin-19.12.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/19.12.1/src/dolphin-19.12.1.tar.xz
+Source1  : https://download.kde.org/stable/release-service/19.12.1/src/dolphin-19.12.1.tar.xz.sig
+Summary  : KDE File Manager
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0
 Requires: dolphin-bin = %{version}-%{release}
@@ -58,6 +58,7 @@ Requires: dolphin-bin = %{version}-%{release}
 Requires: dolphin-data = %{version}-%{release}
 Provides: dolphin-devel = %{version}-%{release}
 Requires: dolphin = %{version}-%{release}
+Requires: dolphin = %{version}-%{release}
 
 %description dev
 dev components for the dolphin package.
@@ -98,17 +99,18 @@ locales components for the dolphin package.
 
 
 %prep
-%setup -q -n dolphin-19.12.0
-cd %{_builddir}/dolphin-19.12.0
+%setup -q -n dolphin-19.12.1
+cd %{_builddir}/dolphin-19.12.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1576358240
+export SOURCE_DATE_EPOCH=1578600068
 mkdir -p clr-build
 pushd clr-build
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -122,11 +124,11 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1576358240
+export SOURCE_DATE_EPOCH=1578600068
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/dolphin
-cp %{_builddir}/dolphin-19.12.0/COPYING %{buildroot}/usr/share/package-licenses/dolphin/7c203dee3a03037da436df03c4b25b659c073976
-cp %{_builddir}/dolphin-19.12.0/COPYING.DOC %{buildroot}/usr/share/package-licenses/dolphin/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
+cp %{_builddir}/dolphin-19.12.1/COPYING %{buildroot}/usr/share/package-licenses/dolphin/7c203dee3a03037da436df03c4b25b659c073976
+cp %{_builddir}/dolphin-19.12.1/COPYING.DOC %{buildroot}/usr/share/package-licenses/dolphin/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
 pushd clr-build
 %make_install
 popd
