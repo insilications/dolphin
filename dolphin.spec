@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : dolphin
-Version  : 19.12.1
-Release  : 38
-URL      : https://download.kde.org/stable/release-service/19.12.1/src/dolphin-19.12.1.tar.xz
-Source0  : https://download.kde.org/stable/release-service/19.12.1/src/dolphin-19.12.1.tar.xz
-Source1  : https://download.kde.org/stable/release-service/19.12.1/src/dolphin-19.12.1.tar.xz.sig
+Version  : 19.12.2
+Release  : 39
+URL      : https://download.kde.org/stable/release-service/19.12.2/src/dolphin-19.12.2.tar.xz
+Source0  : https://download.kde.org/stable/release-service/19.12.2/src/dolphin-19.12.2.tar.xz
+Source1  : https://download.kde.org/stable/release-service/19.12.2/src/dolphin-19.12.2.tar.xz.sig
 Summary  : KDE File Manager
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0
@@ -99,15 +99,15 @@ locales components for the dolphin package.
 
 
 %prep
-%setup -q -n dolphin-19.12.1
-cd %{_builddir}/dolphin-19.12.1
+%setup -q -n dolphin-19.12.2
+cd %{_builddir}/dolphin-19.12.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1578600068
+export SOURCE_DATE_EPOCH=1581011293
 mkdir -p clr-build
 pushd clr-build
 # -Werror is for werrorists
@@ -124,11 +124,11 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1578600068
+export SOURCE_DATE_EPOCH=1581011293
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/dolphin
-cp %{_builddir}/dolphin-19.12.1/COPYING %{buildroot}/usr/share/package-licenses/dolphin/7c203dee3a03037da436df03c4b25b659c073976
-cp %{_builddir}/dolphin-19.12.1/COPYING.DOC %{buildroot}/usr/share/package-licenses/dolphin/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
+cp %{_builddir}/dolphin-19.12.2/COPYING %{buildroot}/usr/share/package-licenses/dolphin/7c203dee3a03037da436df03c4b25b659c073976
+cp %{_builddir}/dolphin-19.12.2/COPYING.DOC %{buildroot}/usr/share/package-licenses/dolphin/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
 pushd clr-build
 %make_install
 popd
