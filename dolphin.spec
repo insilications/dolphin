@@ -5,12 +5,12 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : dolphin
-Version  : 20.04.0
-Release  : 41
-URL      : https://download.kde.org/stable/release-service/20.04.0/src/dolphin-20.04.0.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.04.0/src/dolphin-20.04.0.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.04.0/src/dolphin-20.04.0.tar.xz.sig
-Summary  : KDE File Manager
+Version  : 20.04.1
+Release  : 42
+URL      : https://download.kde.org/stable/release-service/20.04.1/src/dolphin-20.04.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/20.04.1/src/dolphin-20.04.1.tar.xz
+Source1  : https://download.kde.org/stable/release-service/20.04.1/src/dolphin-20.04.1.tar.xz.sig
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0
 Requires: dolphin-bin = %{version}-%{release}
@@ -22,9 +22,11 @@ BuildRequires : baloo-dev
 BuildRequires : baloo-widgets-dev
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
+BuildRequires : extra-cmake-modules-data
 BuildRequires : kactivities-dev
 BuildRequires : kfilemetadata-dev
 BuildRequires : phonon-dev
+BuildRequires : qtbase-dev
 BuildRequires : ruby
 
 %description
@@ -57,7 +59,6 @@ Requires: dolphin-lib = %{version}-%{release}
 Requires: dolphin-bin = %{version}-%{release}
 Requires: dolphin-data = %{version}-%{release}
 Provides: dolphin-devel = %{version}-%{release}
-Requires: dolphin = %{version}-%{release}
 Requires: dolphin = %{version}-%{release}
 
 %description dev
@@ -99,36 +100,35 @@ locales components for the dolphin package.
 
 
 %prep
-%setup -q -n dolphin-20.04.0
-cd %{_builddir}/dolphin-20.04.0
+%setup -q -n dolphin-20.04.1
+cd %{_builddir}/dolphin-20.04.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1587672015
+export SOURCE_DATE_EPOCH=1589843876
 mkdir -p clr-build
 pushd clr-build
-# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
 make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1587672015
+export SOURCE_DATE_EPOCH=1589843876
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/dolphin
-cp %{_builddir}/dolphin-20.04.0/COPYING %{buildroot}/usr/share/package-licenses/dolphin/7c203dee3a03037da436df03c4b25b659c073976
-cp %{_builddir}/dolphin-20.04.0/COPYING.DOC %{buildroot}/usr/share/package-licenses/dolphin/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
+cp %{_builddir}/dolphin-20.04.1/COPYING %{buildroot}/usr/share/package-licenses/dolphin/7c203dee3a03037da436df03c4b25b659c073976
+cp %{_builddir}/dolphin-20.04.1/COPYING.DOC %{buildroot}/usr/share/package-licenses/dolphin/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
 pushd clr-build
 %make_install
 popd
