@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : dolphin
-Version  : 20.04.2
-Release  : 44
-URL      : https://download.kde.org/stable/release-service/20.04.2/src/dolphin-20.04.2.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.04.2/src/dolphin-20.04.2.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.04.2/src/dolphin-20.04.2.tar.xz.sig
+Version  : 20.08.0
+Release  : 45
+URL      : https://download.kde.org/stable/release-service/20.08.0/src/dolphin-20.08.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/20.08.0/src/dolphin-20.08.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/20.08.0/src/dolphin-20.08.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0
@@ -100,15 +100,15 @@ locales components for the dolphin package.
 
 
 %prep
-%setup -q -n dolphin-20.04.2
-cd %{_builddir}/dolphin-20.04.2
+%setup -q -n dolphin-20.08.0
+cd %{_builddir}/dolphin-20.08.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1591901694
+export SOURCE_DATE_EPOCH=1597771626
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -120,15 +120,15 @@ export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags}  VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1591901694
+export SOURCE_DATE_EPOCH=1597771626
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/dolphin
-cp %{_builddir}/dolphin-20.04.2/COPYING %{buildroot}/usr/share/package-licenses/dolphin/7c203dee3a03037da436df03c4b25b659c073976
-cp %{_builddir}/dolphin-20.04.2/COPYING.DOC %{buildroot}/usr/share/package-licenses/dolphin/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
+cp %{_builddir}/dolphin-20.08.0/COPYING %{buildroot}/usr/share/package-licenses/dolphin/7c203dee3a03037da436df03c4b25b659c073976
+cp %{_builddir}/dolphin-20.08.0/COPYING.DOC %{buildroot}/usr/share/package-licenses/dolphin/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
 pushd clr-build
 %make_install
 popd
@@ -155,6 +155,7 @@ popd
 /usr/share/dbus-1/interfaces/org.freedesktop.FileManager1.xml
 /usr/share/dbus-1/services/org.kde.dolphin.FileManager1.service
 /usr/share/kglobalaccel/org.kde.dolphin.desktop
+/usr/share/knsrcfiles/servicemenu.knsrc
 /usr/share/kservices5/dolphinpart.desktop
 /usr/share/kservices5/kcmdolphingeneral.desktop
 /usr/share/kservices5/kcmdolphinnavigation.desktop
@@ -164,7 +165,6 @@ popd
 /usr/share/locale/fi/LC_SCRIPTS/dolphin/dolphin.js
 /usr/share/metainfo/org.kde.dolphin.appdata.xml
 /usr/share/qlogging-categories5/dolphin.categories
-/usr/share/xdg/servicemenu.knsrc
 
 %files dev
 %defattr(-,root,root,-)
@@ -195,7 +195,6 @@ popd
 /usr/share/doc/HTML/ca/dolphin/preferences-general-behavior.png
 /usr/share/doc/HTML/ca/dolphin/preferences-navigation.png
 /usr/share/doc/HTML/ca/dolphin/preferences-services.png
-/usr/share/doc/HTML/ca/dolphin/preferences-startup.png
 /usr/share/doc/HTML/ca/dolphin/preferences-trash.png
 /usr/share/doc/HTML/ca/dolphin/preferences-viewmodes-icons.png
 /usr/share/doc/HTML/ca/dolphin/toolbar-navigation.png
@@ -239,8 +238,27 @@ popd
 /usr/share/doc/HTML/es/dolphin/index.docbook
 /usr/share/doc/HTML/id/dolphin/index.cache.bz2
 /usr/share/doc/HTML/id/dolphin/index.docbook
+/usr/share/doc/HTML/it/dolphin/default-ui.png
+/usr/share/doc/HTML/it/dolphin/grouping-view.png
 /usr/share/doc/HTML/it/dolphin/index.cache.bz2
 /usr/share/doc/HTML/it/dolphin/index.docbook
+/usr/share/doc/HTML/it/dolphin/locationbar-breadcrumb.png
+/usr/share/doc/HTML/it/dolphin/locationbar-context-menu.png
+/usr/share/doc/HTML/it/dolphin/locationbar-editable.png
+/usr/share/doc/HTML/it/dolphin/locationbar-kioslaves-menu.png
+/usr/share/doc/HTML/it/dolphin/locationbar-places-icon.png
+/usr/share/doc/HTML/it/dolphin/nepomuk-search-more-options.png
+/usr/share/doc/HTML/it/dolphin/nepomuk-search.png
+/usr/share/doc/HTML/it/dolphin/preferences-general-behavior.png
+/usr/share/doc/HTML/it/dolphin/preferences-navigation.png
+/usr/share/doc/HTML/it/dolphin/preferences-services.png
+/usr/share/doc/HTML/it/dolphin/preferences-startup.png
+/usr/share/doc/HTML/it/dolphin/preferences-trash.png
+/usr/share/doc/HTML/it/dolphin/preferences-viewmodes-icons.png
+/usr/share/doc/HTML/it/dolphin/toolbar-navigation.png
+/usr/share/doc/HTML/it/dolphin/toolbar-view-appearance.png
+/usr/share/doc/HTML/it/dolphin/toolbar.png
+/usr/share/doc/HTML/it/dolphin/viewproperties-dialog.png
 /usr/share/doc/HTML/nl/dolphin/default-ui.png
 /usr/share/doc/HTML/nl/dolphin/index.cache.bz2
 /usr/share/doc/HTML/nl/dolphin/index.docbook
