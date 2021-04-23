@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : dolphin
-Version  : 20.12.3
-Release  : 50
-URL      : https://download.kde.org/stable/release-service/20.12.3/src/dolphin-20.12.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.12.3/src/dolphin-20.12.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.12.3/src/dolphin-20.12.3.tar.xz.sig
+Version  : 21.04.0
+Release  : 51
+URL      : https://download.kde.org/stable/release-service/21.04.0/src/dolphin-21.04.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/21.04.0/src/dolphin-21.04.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/21.04.0/src/dolphin-21.04.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause BSD-3-Clause GFDL-1.2 GPL-2.0 GPL-3.0 LGPL-2.0
@@ -18,6 +18,7 @@ Requires: dolphin-data = %{version}-%{release}
 Requires: dolphin-lib = %{version}-%{release}
 Requires: dolphin-license = %{version}-%{release}
 Requires: dolphin-locales = %{version}-%{release}
+Requires: dolphin-services = %{version}-%{release}
 BuildRequires : baloo-dev
 BuildRequires : baloo-widgets-dev
 BuildRequires : buildreq-cmake
@@ -39,6 +40,7 @@ Summary: bin components for the dolphin package.
 Group: Binaries
 Requires: dolphin-data = %{version}-%{release}
 Requires: dolphin-license = %{version}-%{release}
+Requires: dolphin-services = %{version}-%{release}
 
 %description bin
 bin components for the dolphin package.
@@ -99,16 +101,24 @@ Group: Default
 locales components for the dolphin package.
 
 
+%package services
+Summary: services components for the dolphin package.
+Group: Systemd services
+
+%description services
+services components for the dolphin package.
+
+
 %prep
-%setup -q -n dolphin-20.12.3
-cd %{_builddir}/dolphin-20.12.3
+%setup -q -n dolphin-21.04.0
+cd %{_builddir}/dolphin-21.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1618654565
+export SOURCE_DATE_EPOCH=1619202010
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -124,20 +134,20 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1618654565
+export SOURCE_DATE_EPOCH=1619202010
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/dolphin
-cp %{_builddir}/dolphin-20.12.3/COPYING %{buildroot}/usr/share/package-licenses/dolphin/7c203dee3a03037da436df03c4b25b659c073976
-cp %{_builddir}/dolphin-20.12.3/COPYING.DOC %{buildroot}/usr/share/package-licenses/dolphin/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
-cp %{_builddir}/dolphin-20.12.3/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/dolphin/680ed9349d3d12bd39ddd36e8c4bc6b1b0cb1c0e
-cp %{_builddir}/dolphin-20.12.3/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/dolphin/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
-cp %{_builddir}/dolphin-20.12.3/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/dolphin/2a638514c87c4923c0570c55822620fad56f2a33
-cp %{_builddir}/dolphin-20.12.3/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/dolphin/e712eadfab0d2357c0f50f599ef35ee0d87534cb
-cp %{_builddir}/dolphin-20.12.3/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/dolphin/6091db0aead0d90182b93d3c0d09ba93d188f907
-cp %{_builddir}/dolphin-20.12.3/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/dolphin/20079e8f79713dce80ab09774505773c926afa2a
-cp %{_builddir}/dolphin-20.12.3/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/dolphin/20079e8f79713dce80ab09774505773c926afa2a
-cp %{_builddir}/dolphin-20.12.3/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/dolphin/7d9831e05094ce723947d729c2a46a09d6e90275
-cp %{_builddir}/dolphin-20.12.3/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/dolphin/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/dolphin-21.04.0/COPYING %{buildroot}/usr/share/package-licenses/dolphin/7c203dee3a03037da436df03c4b25b659c073976
+cp %{_builddir}/dolphin-21.04.0/COPYING.DOC %{buildroot}/usr/share/package-licenses/dolphin/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
+cp %{_builddir}/dolphin-21.04.0/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/dolphin/680ed9349d3d12bd39ddd36e8c4bc6b1b0cb1c0e
+cp %{_builddir}/dolphin-21.04.0/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/dolphin/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
+cp %{_builddir}/dolphin-21.04.0/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/dolphin/2a638514c87c4923c0570c55822620fad56f2a33
+cp %{_builddir}/dolphin-21.04.0/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/dolphin/e712eadfab0d2357c0f50f599ef35ee0d87534cb
+cp %{_builddir}/dolphin-21.04.0/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/dolphin/6091db0aead0d90182b93d3c0d09ba93d188f907
+cp %{_builddir}/dolphin-21.04.0/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/dolphin/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/dolphin-21.04.0/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/dolphin/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/dolphin-21.04.0/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/dolphin/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/dolphin-21.04.0/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/dolphin/7d9831e05094ce723947d729c2a46a09d6e90275
 pushd clr-build
 %make_install
 popd
@@ -156,6 +166,7 @@ popd
 %defattr(-,root,root,-)
 /usr/share/applications/org.kde.dolphin.desktop
 /usr/share/config.kcfg/dolphin_compactmodesettings.kcfg
+/usr/share/config.kcfg/dolphin_contextmenusettings.kcfg
 /usr/share/config.kcfg/dolphin_detailsmodesettings.kcfg
 /usr/share/config.kcfg/dolphin_directoryviewpropertysettings.kcfg
 /usr/share/config.kcfg/dolphin_generalsettings.kcfg
@@ -168,7 +179,6 @@ popd
 /usr/share/kservices5/dolphinpart.desktop
 /usr/share/kservices5/kcmdolphingeneral.desktop
 /usr/share/kservices5/kcmdolphinnavigation.desktop
-/usr/share/kservices5/kcmdolphinservices.desktop
 /usr/share/kservices5/kcmdolphinviewmodes.desktop
 /usr/share/kservicetypes5/fileviewversioncontrolplugin.desktop
 /usr/share/locale/fi/LC_SCRIPTS/dolphin/dolphin.js
@@ -222,6 +232,8 @@ popd
 /usr/share/doc/HTML/de/dolphin/toolbar-navigation.png
 /usr/share/doc/HTML/de/dolphin/toolbar-view-appearance.png
 /usr/share/doc/HTML/de/dolphin/viewproperties-dialog.png
+/usr/share/doc/HTML/en/dolphin/baloo-search-more-options.png
+/usr/share/doc/HTML/en/dolphin/baloo-search.png
 /usr/share/doc/HTML/en/dolphin/default-ui.png
 /usr/share/doc/HTML/en/dolphin/grouping-view.png
 /usr/share/doc/HTML/en/dolphin/index.cache.bz2
@@ -231,11 +243,9 @@ popd
 /usr/share/doc/HTML/en/dolphin/locationbar-editable.png
 /usr/share/doc/HTML/en/dolphin/locationbar-kioslaves-menu.png
 /usr/share/doc/HTML/en/dolphin/locationbar-places-icon.png
-/usr/share/doc/HTML/en/dolphin/nepomuk-search-more-options.png
-/usr/share/doc/HTML/en/dolphin/nepomuk-search.png
+/usr/share/doc/HTML/en/dolphin/preferences-context-menu.png
 /usr/share/doc/HTML/en/dolphin/preferences-general-behavior.png
 /usr/share/doc/HTML/en/dolphin/preferences-navigation.png
-/usr/share/doc/HTML/en/dolphin/preferences-services.png
 /usr/share/doc/HTML/en/dolphin/preferences-startup.png
 /usr/share/doc/HTML/en/dolphin/preferences-trash.png
 /usr/share/doc/HTML/en/dolphin/preferences-viewmodes-icons.png
@@ -304,8 +314,6 @@ popd
 /usr/share/doc/HTML/pt_BR/dolphin/toolbar-view-appearance.png
 /usr/share/doc/HTML/pt_BR/dolphin/toolbar.png
 /usr/share/doc/HTML/pt_BR/dolphin/viewproperties-dialog.png
-/usr/share/doc/HTML/ru/dolphin/index.cache.bz2
-/usr/share/doc/HTML/ru/dolphin/index.docbook
 /usr/share/doc/HTML/sr/dolphin/index.cache.bz2
 /usr/share/doc/HTML/sr/dolphin/index.docbook
 /usr/share/doc/HTML/sv/dolphin/bookmarkbutton.png
@@ -346,11 +354,10 @@ popd
 /usr/lib64/libdolphinvcs.so.5
 /usr/lib64/libdolphinvcs.so.5.0.0
 /usr/lib64/libkdeinit5_dolphin.so
-/usr/lib64/qt5/plugins/dolphinpart.so
 /usr/lib64/qt5/plugins/kcm_dolphingeneral.so
 /usr/lib64/qt5/plugins/kcm_dolphinnavigation.so
-/usr/lib64/qt5/plugins/kcm_dolphinservices.so
 /usr/lib64/qt5/plugins/kcm_dolphinviewmodes.so
+/usr/lib64/qt5/plugins/kf5/parts/dolphinpart.so
 
 %files license
 %defattr(0644,root,root,0755)
@@ -363,6 +370,10 @@ popd
 /usr/share/package-licenses/dolphin/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
 /usr/share/package-licenses/dolphin/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
 /usr/share/package-licenses/dolphin/e712eadfab0d2357c0f50f599ef35ee0d87534cb
+
+%files services
+%defattr(-,root,root,-)
+/usr/lib/systemd/user/plasma-dolphin.service
 
 %files locales -f dolphin.lang -f dolphin_servicemenuinstaller.lang
 %defattr(-,root,root,-)
