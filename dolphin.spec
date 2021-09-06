@@ -5,14 +5,14 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : dolphin
-Version  : 21.04.2
-Release  : 52
-URL      : https://download.kde.org/stable/release-service/21.04.2/src/dolphin-21.04.2.tar.xz
-Source0  : https://download.kde.org/stable/release-service/21.04.2/src/dolphin-21.04.2.tar.xz
-Source1  : https://download.kde.org/stable/release-service/21.04.2/src/dolphin-21.04.2.tar.xz.sig
+Version  : 21.08.1
+Release  : 53
+URL      : https://download.kde.org/stable/release-service/21.08.1/src/dolphin-21.08.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/21.08.1/src/dolphin-21.08.1.tar.xz
+Source1  : https://download.kde.org/stable/release-service/21.08.1/src/dolphin-21.08.1.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : BSD-2-Clause BSD-3-Clause GFDL-1.2 GPL-2.0 GPL-3.0 LGPL-2.0
+License  : BSD-2-Clause BSD-3-Clause GFDL-1.2 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-3.0
 Requires: dolphin-bin = %{version}-%{release}
 Requires: dolphin-data = %{version}-%{release}
 Requires: dolphin-lib = %{version}-%{release}
@@ -110,44 +110,47 @@ services components for the dolphin package.
 
 
 %prep
-%setup -q -n dolphin-21.04.2
-cd %{_builddir}/dolphin-21.04.2
+%setup -q -n dolphin-21.08.1
+cd %{_builddir}/dolphin-21.08.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1623361817
+export SOURCE_DATE_EPOCH=1630960902
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1623361817
+export SOURCE_DATE_EPOCH=1630960902
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/dolphin
-cp %{_builddir}/dolphin-21.04.2/COPYING %{buildroot}/usr/share/package-licenses/dolphin/7c203dee3a03037da436df03c4b25b659c073976
-cp %{_builddir}/dolphin-21.04.2/COPYING.DOC %{buildroot}/usr/share/package-licenses/dolphin/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
-cp %{_builddir}/dolphin-21.04.2/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/dolphin/680ed9349d3d12bd39ddd36e8c4bc6b1b0cb1c0e
-cp %{_builddir}/dolphin-21.04.2/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/dolphin/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
-cp %{_builddir}/dolphin-21.04.2/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/dolphin/2a638514c87c4923c0570c55822620fad56f2a33
-cp %{_builddir}/dolphin-21.04.2/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/dolphin/e712eadfab0d2357c0f50f599ef35ee0d87534cb
-cp %{_builddir}/dolphin-21.04.2/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/dolphin/6091db0aead0d90182b93d3c0d09ba93d188f907
-cp %{_builddir}/dolphin-21.04.2/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/dolphin/20079e8f79713dce80ab09774505773c926afa2a
-cp %{_builddir}/dolphin-21.04.2/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/dolphin/20079e8f79713dce80ab09774505773c926afa2a
-cp %{_builddir}/dolphin-21.04.2/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/dolphin/7d9831e05094ce723947d729c2a46a09d6e90275
-cp %{_builddir}/dolphin-21.04.2/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/dolphin/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/dolphin-21.08.1/COPYING %{buildroot}/usr/share/package-licenses/dolphin/7c203dee3a03037da436df03c4b25b659c073976
+cp %{_builddir}/dolphin-21.08.1/COPYING.DOC %{buildroot}/usr/share/package-licenses/dolphin/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
+cp %{_builddir}/dolphin-21.08.1/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/dolphin/680ed9349d3d12bd39ddd36e8c4bc6b1b0cb1c0e
+cp %{_builddir}/dolphin-21.08.1/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/dolphin/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
+cp %{_builddir}/dolphin-21.08.1/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/dolphin/2a638514c87c4923c0570c55822620fad56f2a33
+cp %{_builddir}/dolphin-21.08.1/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/dolphin/e712eadfab0d2357c0f50f599ef35ee0d87534cb
+cp %{_builddir}/dolphin-21.08.1/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/dolphin/6091db0aead0d90182b93d3c0d09ba93d188f907
+cp %{_builddir}/dolphin-21.08.1/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/dolphin/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/dolphin-21.08.1/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/dolphin/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/dolphin-21.08.1/LICENSES/LGPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/dolphin/49e61f7864169f2e356c11a17422d7d20d74b40f
+cp %{_builddir}/dolphin-21.08.1/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/dolphin/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/dolphin-21.08.1/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/dolphin/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/dolphin-21.08.1/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/dolphin/e458941548e0864907e654fa2e192844ae90fc32
+cp %{_builddir}/dolphin-21.08.1/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/dolphin/e458941548e0864907e654fa2e192844ae90fc32
 pushd clr-build
 %make_install
 popd
@@ -248,6 +251,7 @@ popd
 /usr/share/doc/HTML/en/dolphin/preferences-navigation.png
 /usr/share/doc/HTML/en/dolphin/preferences-startup.png
 /usr/share/doc/HTML/en/dolphin/preferences-trash.png
+/usr/share/doc/HTML/en/dolphin/preferences-user-feedback.png
 /usr/share/doc/HTML/en/dolphin/preferences-viewmodes-icons.png
 /usr/share/doc/HTML/en/dolphin/toolbar-navigation.png
 /usr/share/doc/HTML/en/dolphin/toolbar-view-appearance.png
@@ -342,6 +346,7 @@ popd
 /usr/share/doc/HTML/uk/dolphin/preferences-services.png
 /usr/share/doc/HTML/uk/dolphin/preferences-startup.png
 /usr/share/doc/HTML/uk/dolphin/preferences-trash.png
+/usr/share/doc/HTML/uk/dolphin/preferences-user-feedback.png
 /usr/share/doc/HTML/uk/dolphin/preferences-viewmodes-icons.png
 /usr/share/doc/HTML/uk/dolphin/toolbar-view-appearance.png
 /usr/share/doc/HTML/uk/dolphin/toolbar.png
@@ -353,7 +358,6 @@ popd
 /usr/lib64/libdolphinprivate.so.5.0.0
 /usr/lib64/libdolphinvcs.so.5
 /usr/lib64/libdolphinvcs.so.5.0.0
-/usr/lib64/libkdeinit5_dolphin.so
 /usr/lib64/qt5/plugins/kcm_dolphingeneral.so
 /usr/lib64/qt5/plugins/kcm_dolphinnavigation.so
 /usr/lib64/qt5/plugins/kcm_dolphinviewmodes.so
@@ -363,12 +367,14 @@ popd
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/dolphin/20079e8f79713dce80ab09774505773c926afa2a
 /usr/share/package-licenses/dolphin/2a638514c87c4923c0570c55822620fad56f2a33
+/usr/share/package-licenses/dolphin/49e61f7864169f2e356c11a17422d7d20d74b40f
 /usr/share/package-licenses/dolphin/6091db0aead0d90182b93d3c0d09ba93d188f907
 /usr/share/package-licenses/dolphin/680ed9349d3d12bd39ddd36e8c4bc6b1b0cb1c0e
 /usr/share/package-licenses/dolphin/7c203dee3a03037da436df03c4b25b659c073976
 /usr/share/package-licenses/dolphin/7d9831e05094ce723947d729c2a46a09d6e90275
 /usr/share/package-licenses/dolphin/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
 /usr/share/package-licenses/dolphin/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
+/usr/share/package-licenses/dolphin/e458941548e0864907e654fa2e192844ae90fc32
 /usr/share/package-licenses/dolphin/e712eadfab0d2357c0f50f599ef35ee0d87534cb
 
 %files services
