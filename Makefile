@@ -1,5 +1,6 @@
 PKG_NAME := dolphin
-URL = https://download.kde.org/stable/release-service/21.12.0/src/dolphin-21.12.0.tar.xz
+URL = https://invent.kde.org/system/dolphin.git
 ARCHIVES = 
+ARCHIVES_GIT = 
 
 include ../common/Makefile.common

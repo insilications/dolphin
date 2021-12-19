@@ -1,0 +1,2 @@
+# cp -afR ../settings/.config/ /builddir/ || :
+# cp -afR ../settings/.local/ /builddir/ || :
