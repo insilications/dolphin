@@ -5,27 +5,44 @@
 %define keepstatic 1
 Name     : dolphin
 Version  : 21.12.0
-Release  : 303
+Release  : 318
 URL      : file:///aot/build/clearlinux/packages/dolphin/dolphin-v21.12.0.tar.gz
 Source0  : file:///aot/build/clearlinux/packages/dolphin/dolphin-v21.12.0.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
+Requires: dolphin-bin = %{version}-%{release}
+Requires: dolphin-data = %{version}-%{release}
+Requires: dolphin-lib = %{version}-%{release}
+Requires: dolphin-services = %{version}-%{release}
+BuildRequires : NetworkManager-dev
+BuildRequires : acl-dev
+BuildRequires : appstream-dev
+BuildRequires : attr-dev
 BuildRequires : baloo-dev
 BuildRequires : baloo-widgets-dev
+BuildRequires : bison-dev
 BuildRequires : breeze
+BuildRequires : breeze-gtk
 BuildRequires : breeze-icons
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : buildreq-qmake
+BuildRequires : buildreq-scons
 BuildRequires : cairo-dev
 BuildRequires : curl
 BuildRequires : curl-dev
 BuildRequires : curl-lib
 BuildRequires : dbus
 BuildRequires : dbus-dev
+BuildRequires : docbook-xml
 BuildRequires : dolphin
+BuildRequires : dolphin-dev
+BuildRequires : dolphin-plugins
+BuildRequires : e2fsprogs-dev
+BuildRequires : extra-cmake-modules
 BuildRequires : extra-cmake-modules-data
+BuildRequires : flex
 BuildRequires : fontconfig
 BuildRequires : fontconfig-dev
 BuildRequires : fonts-clear
@@ -34,32 +51,85 @@ BuildRequires : frameworkintegration-lib
 BuildRequires : frameworkintegration-license
 BuildRequires : freetype
 BuildRequires : freetype-dev
+BuildRequires : glib-dev
+BuildRequires : glibc-dev
+BuildRequires : gperf
 BuildRequires : graphite
 BuildRequires : graphite-dev
+BuildRequires : kactivities
 BuildRequires : kactivities-dev
+BuildRequires : kactivities-stats-dev
+BuildRequires : karchive-dev
+BuildRequires : kauth-dev
 BuildRequires : kbookmarks-dev
+BuildRequires : kcmutils
+BuildRequires : kcodecs-dev
+BuildRequires : kcompletion-dev
+BuildRequires : kconfig
 BuildRequires : kconfig-dev
+BuildRequires : kconfigwidgets-dev
 BuildRequires : kcoreaddons-dev
+BuildRequires : kcrash-dev
+BuildRequires : kdbusaddons
+BuildRequires : kdbusaddons-dev
+BuildRequires : kde-cli-tools
+BuildRequires : kde-dev-utils
+BuildRequires : kdeclarative
+BuildRequires : kdeclarative-dev
+BuildRequires : kdecoration
 BuildRequires : kdecoration-dev
 BuildRequires : kdecoration-lib
+BuildRequires : kded-dev
+BuildRequires : kdegraphics-thumbnailers
+BuildRequires : kdelibs4support
+BuildRequires : kdelibs4support-dev
+BuildRequires : kdesdk-kioslaves
+BuildRequires : kdesdk-thumbnailers
+BuildRequires : kdesignerplugin-dev
+BuildRequires : kdesu-dev
+BuildRequires : kdialog
+BuildRequires : kdnssd-dev
 BuildRequires : kdoctools-dev
+BuildRequires : kdsoap-dev
+BuildRequires : kemoticons-dev
 BuildRequires : keyutils
 BuildRequires : keyutils-dev
+BuildRequires : kfilemetadata
 BuildRequires : kfilemetadata-dev
+BuildRequires : kfourinline
 BuildRequires : kglobalaccel-dev
+BuildRequires : kguiaddons
 BuildRequires : kguiaddons-dev
 BuildRequires : ki18n-dev
 BuildRequires : kiconthemes-dev
+BuildRequires : kimageformats
 BuildRequires : kio-dev
+BuildRequires : kio-extras
+BuildRequires : kio-extras-dev
 BuildRequires : kitemmodels-dev
+BuildRequires : kitemviews
 BuildRequires : kitemviews-dev
+BuildRequires : kjobwidgets-dev
+BuildRequires : kmime
 BuildRequires : knewstuff-dev
+BuildRequires : knotifications-dev
 BuildRequires : knotifyconfig-dev
 BuildRequires : konsole
+BuildRequires : konsole-data
+BuildRequires : konsole-lib
+BuildRequires : kpackage-dev
+BuildRequires : kparts-dev
 BuildRequires : krb5
 BuildRequires : krb5-dev
+BuildRequires : kservice
+BuildRequires : kservice-dev
 BuildRequires : ktexteditor-dev
+BuildRequires : ktextwidgets-dev
+BuildRequires : kunitconversion-dev
 BuildRequires : kwallet-dev
+BuildRequires : kwidgetsaddons-dev
+BuildRequires : kwindowsystem-dev
+BuildRequires : kxmlgui-dev
 BuildRequires : libICE-dev
 BuildRequires : libSM-dev
 BuildRequires : libX11-data
@@ -98,16 +168,27 @@ BuildRequires : libXtst-lib
 BuildRequires : libXv-dev
 BuildRequires : libXxf86vm-dev
 BuildRequires : libXxf86vm-lib
+BuildRequires : libcap-dev
 BuildRequires : libgcrypt-dev
 BuildRequires : libgit2
 BuildRequires : libgit2-dev
+BuildRequires : libgpg-error-dev
+BuildRequires : libkdcraw-dev
+BuildRequires : libkexiv2-dev
+BuildRequires : libkipi-dev
 BuildRequires : libogg-dev
 BuildRequires : libsndfile-dev
+BuildRequires : libssh-dev
 BuildRequires : libvorbis-dev
+BuildRequires : libwebp-dev
 BuildRequires : libxcb-dev
 BuildRequires : libxcb-lib
+BuildRequires : libxml2
 BuildRequires : libxml2-dev
 BuildRequires : libxml2-staticdev
+BuildRequires : libxslt
+BuildRequires : libxslt-dev
+BuildRequires : lz4-dev
 BuildRequires : m4
 BuildRequires : mesa-dev
 BuildRequires : openssh
@@ -118,24 +199,66 @@ BuildRequires : pcre-dev
 BuildRequires : pcre-staticdev
 BuildRequires : pcre2-dev
 BuildRequires : pcre2-staticdev
+BuildRequires : perl
+BuildRequires : perl-URI
 BuildRequires : phonon-dev
 BuildRequires : pixman-dev
-BuildRequires : pixman-staticdev
 BuildRequires : pkg-config
 BuildRequires : pkg-config-dev
+BuildRequires : pkgconfig(OpenEXR)
+BuildRequires : pkgconfig(Qt5Core)
+BuildRequires : pkgconfig(Qt5DBus)
+BuildRequires : pkgconfig(Qt5Gui)
+BuildRequires : pkgconfig(blkid)
+BuildRequires : pkgconfig(bluez)
+BuildRequires : pkgconfig(enchant)
+BuildRequires : pkgconfig(exiv2)
+BuildRequires : pkgconfig(gobject-2.0)
+BuildRequires : pkgconfig(libmtp)
+BuildRequires : pkgconfig(libtirpc)
+BuildRequires : pkgconfig(poppler)
+BuildRequires : pkgconfig(smbclient)
+BuildRequires : pkgconfig(sqlite3)
+BuildRequires : pkgconfig(xcb)
 BuildRequires : plasma-framework-dev
+BuildRequires : plasma-workspace
+BuildRequires : plasma-workspace-dev
+BuildRequires : polkit-kde-agent
+BuildRequires : poppler-dev
+BuildRequires : python3
 BuildRequires : python3-dev
 BuildRequires : python3-staticdev
+BuildRequires : qt5ct
 BuildRequires : qtbase-dev
+BuildRequires : qtdeclarative-dev
+BuildRequires : qtimageformats
+BuildRequires : qtimageformats-dev
+BuildRequires : qtsvg
+BuildRequires : qtsvg-dev
+BuildRequires : qttools-dev
+BuildRequires : qtwayland-dev
+BuildRequires : qtx11extras-dev
 BuildRequires : requests
 BuildRequires : ruby
 BuildRequires : setxkbmap
+BuildRequires : solid-dev
+BuildRequires : sonnet-dev
 BuildRequires : syntax-highlighting-dev
+BuildRequires : systemd
+BuildRequires : systemd-dev
+BuildRequires : taglib-dev
+BuildRequires : tiff-dev
 BuildRequires : util-linux
 BuildRequires : util-linux-dev
 BuildRequires : wayland
 BuildRequires : wayland-dev
 BuildRequires : xauth
+BuildRequires : xcb-util-cursor-dev
+BuildRequires : xcb-util-dev
+BuildRequires : xcb-util-image-dev
+BuildRequires : xcb-util-keysyms-dev
+BuildRequires : xcb-util-renderutil-dev
+BuildRequires : xcb-util-wm-dev
 BuildRequires : xclip
 BuildRequires : xdg-dbus-proxy
 BuildRequires : xdg-desktop-portal
@@ -182,20 +305,76 @@ BuildRequires : xwd
 BuildRequires : xwininfo
 BuildRequires : xz
 BuildRequires : xz-dev
+BuildRequires : zlib-dev
+BuildRequires : zstd-dev
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
-Patch1: 0001-Static-PGO-build.patch
 
 %description
 User Documentation
 ==================
 See https://userbase.kde.org/Special:myLanguage/Dolphin
 
+%package bin
+Summary: bin components for the dolphin package.
+Group: Binaries
+Requires: dolphin-data = %{version}-%{release}
+Requires: dolphin-services = %{version}-%{release}
+
+%description bin
+bin components for the dolphin package.
+
+
+%package data
+Summary: data components for the dolphin package.
+Group: Data
+
+%description data
+data components for the dolphin package.
+
+
+%package dev
+Summary: dev components for the dolphin package.
+Group: Development
+Requires: dolphin-lib = %{version}-%{release}
+Requires: dolphin-bin = %{version}-%{release}
+Requires: dolphin-data = %{version}-%{release}
+Provides: dolphin-devel = %{version}-%{release}
+Requires: dolphin = %{version}-%{release}
+
+%description dev
+dev components for the dolphin package.
+
+
+%package doc
+Summary: doc components for the dolphin package.
+Group: Documentation
+
+%description doc
+doc components for the dolphin package.
+
+
+%package lib
+Summary: lib components for the dolphin package.
+Group: Libraries
+Requires: dolphin-data = %{version}-%{release}
+
+%description lib
+lib components for the dolphin package.
+
+
+%package services
+Summary: services components for the dolphin package.
+Group: Systemd services
+
+%description services
+services components for the dolphin package.
+
+
 %prep
 %setup -q -n dolphin
 cd %{_builddir}/dolphin
-%patch1 -p1
 
 %build
 unset http_proxy
@@ -203,7 +382,7 @@ unset https_proxy
 unset no_proxy
 export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1639917994
+export SOURCE_DATE_EPOCH=1639924993
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -214,27 +393,27 @@ export NM=gcc-nm
 ## pgo generate
 unset ASFLAGS
 export PGO_GEN="-fprofile-generate=/var/tmp/pgo -fprofile-dir=/var/tmp/pgo -fprofile-abs-path -fprofile-update=atomic -fprofile-arcs -ftest-coverage -fprofile-partial-training -fprofile-correction -freorder-functions --coverage -lgcov"
-export CFLAGS_GENERATE="-O3 --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now,-z,relro,-z,max-page-size=0x1000,-z,separate-code -Wno-error -mprefer-vector-width=256 -falign-functions=32 -flimit-function-alignment -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -floop-block -fno-math-errno -fno-semantic-interposition -Wl,-Bsymbolic-functions -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-slp-vectorize -ftree-vectorize -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=auto -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -pipe -ffat-lto-objects -fPIC -fomit-frame-pointer -fexceptions -static-libstdc++ -static-libgcc $PGO_GEN"
-export ASMFLAGS_GENERATE="-O3 --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now,-z,relro,-z,max-page-size=0x1000,-z,separate-code -Wno-error -mprefer-vector-width=256 -falign-functions=32 -flimit-function-alignment -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -floop-block -fno-math-errno -fno-semantic-interposition -Wl,-Bsymbolic-functions -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-slp-vectorize -ftree-vectorize -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=auto -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -pipe -ffat-lto-objects -fPIC -fomit-frame-pointer -fexceptions -static-libstdc++ -static-libgcc $PGO_GEN"
-export FCFLAGS_GENERATE="-O3 --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now,-z,relro,-z,max-page-size=0x1000,-z,separate-code -Wno-error -mprefer-vector-width=256 -falign-functions=32 -flimit-function-alignment -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -floop-block -fno-math-errno -fno-semantic-interposition -Wl,-Bsymbolic-functions -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-slp-vectorize -ftree-vectorize -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=auto -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -pipe -ffat-lto-objects -fPIC -fomit-frame-pointer -fexceptions -static-libstdc++ -static-libgcc $PGO_GEN"
-export FFLAGS_GENERATE="-O3 --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now,-z,relro,-z,max-page-size=0x1000,-z,separate-code -Wno-error -mprefer-vector-width=256 -falign-functions=32 -flimit-function-alignment -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -floop-block -fno-math-errno -fno-semantic-interposition -Wl,-Bsymbolic-functions -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-slp-vectorize -ftree-vectorize -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=auto -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -pipe -ffat-lto-objects -fPIC -fomit-frame-pointer -fexceptions -static-libstdc++ -static-libgcc $PGO_GEN"
-export CXXFLAGS_GENERATE="-O3 --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now,-z,relro,-z,max-page-size=0x1000,-z,separate-code -Wno-error -mprefer-vector-width=256 -falign-functions=32 -flimit-function-alignment -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -floop-block -fno-math-errno -fno-semantic-interposition -Wl,-Bsymbolic-functions -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-slp-vectorize -ftree-vectorize -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=auto -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -fvisibility-inlines-hidden -pipe -ffat-lto-objects -fPIC -fomit-frame-pointer -fexceptions -static-libstdc++ -static-libgcc $PGO_GEN"
-export LDFLAGS_GENERATE="-O3 --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now,-z,relro,-z,max-page-size=0x1000,-z,separate-code -Wno-error -mprefer-vector-width=256 -falign-functions=32 -flimit-function-alignment -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -floop-block -fno-math-errno -fno-semantic-interposition -Wl,-Bsymbolic-functions -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-slp-vectorize -ftree-vectorize -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=auto -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -pipe -ffat-lto-objects -fPIC -fomit-frame-pointer -fexceptions -static-libstdc++ -static-libgcc $PGO_GEN"
+export CFLAGS_GENERATE="-O3 $PGO_GEN"
+export ASMFLAGS_GENERATE="-O3 $PGO_GEN"
+export FCFLAGS_GENERATE="-O3 $PGO_GEN"
+export FFLAGS_GENERATE="-O3 $PGO_GEN"
+export CXXFLAGS_GENERATE="-O3  -fexceptions -static-libstdc++ -static-libgcc $PGO_GEN"
+export LDFLAGS_GENERATE="-O3 $PGO_GEN"
 export LIBS_GENERATE="-lgcov"
 ## pgo use
 ## -fno-tree-vectorize: disable -ftree-vectorize thus disable -ftree-loop-vectorize and -ftree-slp-vectorize -fopt-info-vec
-## -Ofast -ffast-math
+## -O3 -ffast-math
 ## -funroll-loops maybe dangerous
 ## -Wl,-z,max-page-size=0x1000
 ## -pthread -lpthread
 ## -Wl,-Bsymbolic-functions
 export PGO_USE="-Wmissing-profile -Wcoverage-mismatch -fprofile-use=/var/tmp/pgo -fprofile-dir=/var/tmp/pgo -fprofile-abs-path -fprofile-update=atomic -fprofile-partial-training -fprofile-correction -freorder-functions"
-export CFLAGS_USE="-g3 -ggdb -O3 --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now,-z,relro,-z,max-page-size=0x1000,-z,separate-code -Wno-error -mprefer-vector-width=256 -falign-functions=32 -flimit-function-alignment -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -floop-block -fno-math-errno -fno-semantic-interposition -Wl,-Bsymbolic-functions -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-slp-vectorize -ftree-vectorize -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=auto -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -pipe -ffat-lto-objects -fPIC -fomit-frame-pointer -fexceptions -static-libstdc++ -static-libgcc $PGO_USE"
-export ASMFLAGS_USE="-g3 -ggdb -O3 --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now,-z,relro,-z,max-page-size=0x1000,-z,separate-code -Wno-error -mprefer-vector-width=256 -falign-functions=32 -flimit-function-alignment -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -floop-block -fno-math-errno -fno-semantic-interposition -Wl,-Bsymbolic-functions -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-slp-vectorize -ftree-vectorize -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=auto -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -pipe -ffat-lto-objects -fPIC -fomit-frame-pointer -fexceptions -static-libstdc++ -static-libgcc $PGO_USE"
-export FCFLAGS_USE="-g3 -ggdb -O3 --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now,-z,relro,-z,max-page-size=0x1000,-z,separate-code -Wno-error -mprefer-vector-width=256 -falign-functions=32 -flimit-function-alignment -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -floop-block -fno-math-errno -fno-semantic-interposition -Wl,-Bsymbolic-functions -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-slp-vectorize -ftree-vectorize -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=auto -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -pipe -ffat-lto-objects -fPIC -fomit-frame-pointer -fexceptions -static-libstdc++ -static-libgcc $PGO_USE"
-export FFLAGS_USE="-g3 -ggdb -O3 --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now,-z,relro,-z,max-page-size=0x1000,-z,separate-code -Wno-error -mprefer-vector-width=256 -falign-functions=32 -flimit-function-alignment -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -floop-block -fno-math-errno -fno-semantic-interposition -Wl,-Bsymbolic-functions -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-slp-vectorize -ftree-vectorize -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=auto -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -pipe -ffat-lto-objects -fPIC -fomit-frame-pointer -fexceptions -static-libstdc++ -static-libgcc $PGO_USE"
-export CXXFLAGS_USE="-g3 -ggdb -O3 --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now,-z,relro,-z,max-page-size=0x1000,-z,separate-code -Wno-error -mprefer-vector-width=256 -falign-functions=32 -flimit-function-alignment -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -floop-block -fno-math-errno -fno-semantic-interposition -Wl,-Bsymbolic-functions -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-slp-vectorize -ftree-vectorize -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=auto -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -fvisibility-inlines-hidden -pipe -ffat-lto-objects -fPIC -fomit-frame-pointer -fexceptions -static-libstdc++ -static-libgcc $PGO_USE"
-export LDFLAGS_USE="-g3 -ggdb -O3 --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now,-z,relro,-z,max-page-size=0x1000,-z,separate-code -Wno-error -mprefer-vector-width=256 -falign-functions=32 -flimit-function-alignment -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -floop-block -fno-math-errno -fno-semantic-interposition -Wl,-Bsymbolic-functions -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-slp-vectorize -ftree-vectorize -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=auto -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -pipe -ffat-lto-objects -fPIC -fomit-frame-pointer -fexceptions -static-libstdc++ -static-libgcc $PGO_USE"
+export CFLAGS_USE="-g3 -ggdb -O3 $PGO_USE"
+export ASMFLAGS_USE="-g3 -ggdb -O3 $PGO_USE"
+export FCFLAGS_USE="-g3 -ggdb -O3 $PGO_USE"
+export FFLAGS_USE="-g3 -ggdb -O3 $PGO_USE"
+export CXXFLAGS_USE="-g3 -ggdb -O3  -fexceptions -static-libstdc++ -static-libgcc $PGO_USE"
+export LDFLAGS_USE="-g3 -ggdb -O3 $PGO_USE"
 #
 export AR=/usr/bin/gcc-ar
 export RANLIB=/usr/bin/gcc-ranlib
@@ -345,10 +524,10 @@ export QT_IM_MODULE="cedilla"
 export FREETYPE_PROPERTIES="truetype:interpreter-version=40"
 export PLASMA_USE_QT_SCALING=1
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
+export QT_PLUGIN_PATH=/builddir/build/BUILD/dolphin/clr-build/bin
 export LD_LIBRARY_PATH="/builddir/build/BUILD/dolphin/clr-build/bin:/usr/nvidia/lib64:/usr/nvidia/lib64/vdpau:/usr/nvidia/lib64/xorg/modules/drivers:/usr/nvidia/lib64/xorg/modules/extensions:/usr/local/cuda/lib64:/usr/lib64/haswell:/usr/lib64/haswell/pulseaudio:/usr/lib64/haswell/alsa-lib:/usr/lib64/haswell/gstreamer-1.0:/usr/lib64/haswell/pipewire-0.3:/usr/lib64/haswell/spa-0.2:/usr/lib64/dri:/usr/lib64:/usr/lib64/pulseaudio:/usr/lib64/alsa-lib:/usr/lib64/gstreamer-1.0:/usr/lib64/pipewire-0.3:/usr/lib64/spa-0.2:/usr/lib:/aot/intel/oneapi/compiler/latest/linux/compiler/lib/intel64_lin:/aot/intel/oneapi/compiler/latest/linux/lib:/aot/intel/oneapi/mkl/latest/lib/intel64:/aot/intel/oneapi/tbb/latest/lib/intel64/gcc4.8:/usr/share:/usr/lib64/wine:/usr/nvidia/lib32:/usr/nvidia/lib32/vdpau:/usr/lib32:/usr/lib32/wine"
 export LIBRARY_PATH="/builddir/build/BUILD/dolphin/clr-build/bin:/usr/nvidia/lib64:/usr/nvidia/lib64/vdpau:/usr/nvidia/lib64/xorg/modules/drivers:/usr/nvidia/lib64/xorg/modules/extensions:/usr/local/cuda/lib64:/usr/lib64/haswell:/usr/lib64/haswell/pulseaudio:/usr/lib64/haswell/alsa-lib:/usr/lib64/haswell/gstreamer-1.0:/usr/lib64/haswell/pipewire-0.3:/usr/lib64/haswell/spa-0.2:/usr/lib64/dri:/usr/lib64:/usr/lib64/pulseaudio:/usr/lib64/alsa-lib:/usr/lib64/gstreamer-1.0:/usr/lib64/pipewire-0.3:/usr/lib64/spa-0.2:/usr/lib:/aot/intel/oneapi/compiler/latest/linux/compiler/lib/intel64_lin:/aot/intel/oneapi/compiler/latest/linux/lib:/aot/intel/oneapi/mkl/latest/lib/intel64:/aot/intel/oneapi/tbb/latest/lib/intel64/gcc4.8:/usr/share:/usr/lib64/wine:/usr/nvidia/lib32:/usr/nvidia/lib32/vdpau:/usr/lib32:/usr/lib32/wine"
 ctest --parallel 1 --verbose --progress || :
-exit 1
 export LD_LIBRARY_PATH="/usr/nvidia/lib64:/usr/nvidia/lib64/vdpau:/usr/nvidia/lib64/xorg/modules/drivers:/usr/nvidia/lib64/xorg/modules/extensions:/usr/local/cuda/lib64:/usr/lib64/haswell:/usr/lib64/haswell/pulseaudio:/usr/lib64/haswell/alsa-lib:/usr/lib64/haswell/gstreamer-1.0:/usr/lib64/haswell/pipewire-0.3:/usr/lib64/haswell/spa-0.2:/usr/lib64/dri:/usr/lib64:/usr/lib64/pulseaudio:/usr/lib64/alsa-lib:/usr/lib64/gstreamer-1.0:/usr/lib64/pipewire-0.3:/usr/lib64/spa-0.2:/usr/lib:/aot/intel/oneapi/compiler/latest/linux/compiler/lib/intel64_lin:/aot/intel/oneapi/compiler/latest/linux/lib:/aot/intel/oneapi/mkl/latest/lib/intel64:/aot/intel/oneapi/tbb/latest/lib/intel64/gcc4.8:/usr/share:/usr/lib64/wine:/usr/nvidia/lib32:/usr/nvidia/lib32/vdpau:/usr/lib32:/usr/lib32/wine"
 export LIBRARY_PATH="/usr/nvidia/lib64:/usr/nvidia/lib64/vdpau:/usr/nvidia/lib64/xorg/modules/drivers:/usr/nvidia/lib64/xorg/modules/extensions:/usr/local/cuda/lib64:/usr/lib64/haswell:/usr/lib64/haswell/pulseaudio:/usr/lib64/haswell/alsa-lib:/usr/lib64/haswell/gstreamer-1.0:/usr/lib64/haswell/pipewire-0.3:/usr/lib64/haswell/spa-0.2:/usr/lib64/dri:/usr/lib64:/usr/lib64/pulseaudio:/usr/lib64/alsa-lib:/usr/lib64/gstreamer-1.0:/usr/lib64/pipewire-0.3:/usr/lib64/spa-0.2:/usr/lib:/aot/intel/oneapi/compiler/latest/linux/compiler/lib/intel64_lin:/aot/intel/oneapi/compiler/latest/linux/lib:/aot/intel/oneapi/mkl/latest/lib/intel64:/aot/intel/oneapi/tbb/latest/lib/intel64/gcc4.8:/usr/share:/usr/lib64/wine:/usr/nvidia/lib32:/usr/nvidia/lib32/vdpau:/usr/lib32:/usr/lib32/wine"
 ## profile_payload end
@@ -374,7 +553,7 @@ fi
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1639917994
+export SOURCE_DATE_EPOCH=1639924993
 rm -rf %{buildroot}
 pushd clr-build
 %make_install
@@ -382,3 +561,83 @@ popd
 
 %files
 %defattr(-,root,root,-)
+
+%files bin
+%defattr(-,root,root,-)
+/usr/bin/dolphin
+/usr/bin/servicemenuinstaller
+
+%files data
+%defattr(-,root,root,-)
+/usr/share/applications/org.kde.dolphin.desktop
+/usr/share/config.kcfg/dolphin_compactmodesettings.kcfg
+/usr/share/config.kcfg/dolphin_contextmenusettings.kcfg
+/usr/share/config.kcfg/dolphin_detailsmodesettings.kcfg
+/usr/share/config.kcfg/dolphin_directoryviewpropertysettings.kcfg
+/usr/share/config.kcfg/dolphin_generalsettings.kcfg
+/usr/share/config.kcfg/dolphin_iconsmodesettings.kcfg
+/usr/share/config.kcfg/dolphin_versioncontrolsettings.kcfg
+/usr/share/dbus-1/interfaces/org.freedesktop.FileManager1.xml
+/usr/share/dbus-1/services/org.kde.dolphin.FileManager1.service
+/usr/share/kglobalaccel/org.kde.dolphin.desktop
+/usr/share/knsrcfiles/servicemenu.knsrc
+/usr/share/kservices5/dolphinpart.desktop
+/usr/share/kservices5/kcmdolphingeneral.desktop
+/usr/share/kservices5/kcmdolphinnavigation.desktop
+/usr/share/kservices5/kcmdolphinviewmodes.desktop
+/usr/share/kservicetypes5/fileviewversioncontrolplugin.desktop
+/usr/share/metainfo/org.kde.dolphin.appdata.xml
+/usr/share/qlogging-categories5/dolphin.categories
+
+%files dev
+%defattr(-,root,root,-)
+/usr/include/Dolphin/KVersionControlPlugin
+/usr/include/Dolphin/dolphinvcs_version.h
+/usr/include/Dolphin/kversioncontrolplugin.h
+/usr/include/dolphin_export.h
+/usr/include/dolphinvcs_export.h
+/usr/lib64/cmake/DolphinVcs/DolphinVcsConfig.cmake
+/usr/lib64/cmake/DolphinVcs/DolphinVcsConfigVersion.cmake
+/usr/lib64/cmake/DolphinVcs/DolphinVcsTargets-none.cmake
+/usr/lib64/cmake/DolphinVcs/DolphinVcsTargets.cmake
+/usr/lib64/libdolphinvcs.so
+
+%files doc
+%defattr(0644,root,root,0755)
+/usr/share/doc/HTML/en/dolphin/baloo-search-more-options.png
+/usr/share/doc/HTML/en/dolphin/baloo-search.png
+/usr/share/doc/HTML/en/dolphin/default-ui.png
+/usr/share/doc/HTML/en/dolphin/grouping-view.png
+/usr/share/doc/HTML/en/dolphin/index.cache.bz2
+/usr/share/doc/HTML/en/dolphin/index.docbook
+/usr/share/doc/HTML/en/dolphin/locationbar-breadcrumb.png
+/usr/share/doc/HTML/en/dolphin/locationbar-context-menu.png
+/usr/share/doc/HTML/en/dolphin/locationbar-editable.png
+/usr/share/doc/HTML/en/dolphin/locationbar-kioslaves-menu.png
+/usr/share/doc/HTML/en/dolphin/locationbar-places-icon.png
+/usr/share/doc/HTML/en/dolphin/preferences-context-menu.png
+/usr/share/doc/HTML/en/dolphin/preferences-general-behavior.png
+/usr/share/doc/HTML/en/dolphin/preferences-navigation.png
+/usr/share/doc/HTML/en/dolphin/preferences-startup.png
+/usr/share/doc/HTML/en/dolphin/preferences-trash.png
+/usr/share/doc/HTML/en/dolphin/preferences-user-feedback.png
+/usr/share/doc/HTML/en/dolphin/preferences-viewmodes-icons.png
+/usr/share/doc/HTML/en/dolphin/toolbar-navigation.png
+/usr/share/doc/HTML/en/dolphin/toolbar-view-appearance.png
+/usr/share/doc/HTML/en/dolphin/toolbar.png
+/usr/share/doc/HTML/en/dolphin/viewproperties-dialog.png
+
+%files lib
+%defattr(-,root,root,-)
+/usr/lib64/libdolphinprivate.so.5
+/usr/lib64/libdolphinprivate.so.5.0.0
+/usr/lib64/libdolphinvcs.so.5
+/usr/lib64/libdolphinvcs.so.5.0.0
+/usr/lib64/qt5/plugins/dolphin/kcms/libkcm_dolphingeneral.so
+/usr/lib64/qt5/plugins/dolphin/kcms/libkcm_dolphinnavigation.so
+/usr/lib64/qt5/plugins/dolphin/kcms/libkcm_dolphinviewmodes.so
+/usr/lib64/qt5/plugins/kf5/parts/dolphinpart.so
+
+%files services
+%defattr(-,root,root,-)
+/usr/lib/systemd/user/plasma-dolphin.service

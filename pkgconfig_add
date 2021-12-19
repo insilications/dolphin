@@ -1,2 +1,17 @@
 # This file contains additional pkgconfig build requirements that did
 # not get picked up automatically. One name per line, no whitespace.
+OpenEXR
+Qt5Core
+Qt5DBus
+Qt5Gui
+blkid
+bluez
+enchant
+exiv2
+gobject-2.0
+libmtp
+libtirpc
+poppler
+smbclient
+sqlite3
+xcb
