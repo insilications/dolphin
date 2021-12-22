@@ -11,6 +11,10 @@ Source0  : file:///aot/build/clearlinux/packages/dolphin/dolphin-v22.03.70.tar.g
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
+Requires: dolphin-bin = %{version}-%{release}
+Requires: dolphin-data = %{version}-%{release}
+Requires: dolphin-lib = %{version}-%{release}
+Requires: dolphin-services = %{version}-%{release}
 BuildRequires : NetworkManager-dev
 BuildRequires : acl-dev
 BuildRequires : appstream-dev
@@ -313,6 +317,71 @@ User Documentation
 ==================
 See https://userbase.kde.org/Special:myLanguage/Dolphin
 
+%package bin
+Summary: bin components for the dolphin package.
+Group: Binaries
+Requires: dolphin-data = %{version}-%{release}
+Requires: dolphin-services = %{version}-%{release}
+
+%description bin
+bin components for the dolphin package.
+
+
+%package data
+Summary: data components for the dolphin package.
+Group: Data
+
+%description data
+data components for the dolphin package.
+
+
+%package dev
+Summary: dev components for the dolphin package.
+Group: Development
+Requires: dolphin-lib = %{version}-%{release}
+Requires: dolphin-bin = %{version}-%{release}
+Requires: dolphin-data = %{version}-%{release}
+Provides: dolphin-devel = %{version}-%{release}
+Requires: dolphin = %{version}-%{release}
+
+%description dev
+dev components for the dolphin package.
+
+
+%package doc
+Summary: doc components for the dolphin package.
+Group: Documentation
+
+%description doc
+doc components for the dolphin package.
+
+
+%package lib
+Summary: lib components for the dolphin package.
+Group: Libraries
+Requires: dolphin-data = %{version}-%{release}
+
+%description lib
+lib components for the dolphin package.
+
+
+%package services
+Summary: services components for the dolphin package.
+Group: Systemd services
+
+%description services
+services components for the dolphin package.
+
+
+%package staticdev
+Summary: staticdev components for the dolphin package.
+Group: Default
+Requires: dolphin-dev = %{version}-%{release}
+
+%description staticdev
+staticdev components for the dolphin package.
+
+
 %prep
 %setup -q -n dolphin
 cd %{_builddir}/dolphin
@@ -324,7 +393,7 @@ unset https_proxy
 unset no_proxy
 export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1640175719
+export SOURCE_DATE_EPOCH=1640176369
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -496,7 +565,7 @@ fi
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1640175719
+export SOURCE_DATE_EPOCH=1640176369
 rm -rf %{buildroot}
 pushd clr-build
 %make_install
@@ -504,3 +573,83 @@ popd
 
 %files
 %defattr(-,root,root,-)
+
+%files bin
+%defattr(-,root,root,-)
+/usr/bin/dolphin
+/usr/bin/servicemenuinstaller
+
+%files data
+%defattr(-,root,root,-)
+/usr/share/applications/org.kde.dolphin.desktop
+/usr/share/config.kcfg/dolphin_compactmodesettings.kcfg
+/usr/share/config.kcfg/dolphin_contextmenusettings.kcfg
+/usr/share/config.kcfg/dolphin_detailsmodesettings.kcfg
+/usr/share/config.kcfg/dolphin_directoryviewpropertysettings.kcfg
+/usr/share/config.kcfg/dolphin_generalsettings.kcfg
+/usr/share/config.kcfg/dolphin_iconsmodesettings.kcfg
+/usr/share/config.kcfg/dolphin_versioncontrolsettings.kcfg
+/usr/share/dbus-1/interfaces/org.freedesktop.FileManager1.xml
+/usr/share/dbus-1/services/org.kde.dolphin.FileManager1.service
+/usr/share/kglobalaccel/org.kde.dolphin.desktop
+/usr/share/knsrcfiles/servicemenu.knsrc
+/usr/share/kservices5/dolphinpart.desktop
+/usr/share/kservices5/kcmdolphingeneral.desktop
+/usr/share/kservices5/kcmdolphinnavigation.desktop
+/usr/share/kservices5/kcmdolphinviewmodes.desktop
+/usr/share/kservicetypes5/fileviewversioncontrolplugin.desktop
+/usr/share/metainfo/org.kde.dolphin.appdata.xml
+/usr/share/qlogging-categories5/dolphin.categories
+
+%files dev
+%defattr(-,root,root,-)
+/usr/include/Dolphin/KVersionControlPlugin
+/usr/include/Dolphin/dolphinvcs_version.h
+/usr/include/Dolphin/kversioncontrolplugin.h
+/usr/include/dolphin_export.h
+/usr/include/dolphinvcs_export.h
+/usr/lib64/cmake/DolphinVcs/DolphinVcsConfig.cmake
+/usr/lib64/cmake/DolphinVcs/DolphinVcsConfigVersion.cmake
+/usr/lib64/cmake/DolphinVcs/DolphinVcsTargets-none.cmake
+/usr/lib64/cmake/DolphinVcs/DolphinVcsTargets.cmake
+
+%files doc
+%defattr(0644,root,root,0755)
+/usr/share/doc/HTML/en/dolphin/baloo-search-more-options.png
+/usr/share/doc/HTML/en/dolphin/baloo-search.png
+/usr/share/doc/HTML/en/dolphin/default-ui.png
+/usr/share/doc/HTML/en/dolphin/grouping-view.png
+/usr/share/doc/HTML/en/dolphin/index.cache.bz2
+/usr/share/doc/HTML/en/dolphin/index.docbook
+/usr/share/doc/HTML/en/dolphin/locationbar-breadcrumb.png
+/usr/share/doc/HTML/en/dolphin/locationbar-context-menu.png
+/usr/share/doc/HTML/en/dolphin/locationbar-editable.png
+/usr/share/doc/HTML/en/dolphin/locationbar-kioslaves-menu.png
+/usr/share/doc/HTML/en/dolphin/locationbar-places-icon.png
+/usr/share/doc/HTML/en/dolphin/preferences-context-menu.png
+/usr/share/doc/HTML/en/dolphin/preferences-general-behavior.png
+/usr/share/doc/HTML/en/dolphin/preferences-navigation.png
+/usr/share/doc/HTML/en/dolphin/preferences-startup.png
+/usr/share/doc/HTML/en/dolphin/preferences-trash.png
+/usr/share/doc/HTML/en/dolphin/preferences-user-feedback.png
+/usr/share/doc/HTML/en/dolphin/preferences-viewmodes-icons.png
+/usr/share/doc/HTML/en/dolphin/toolbar-navigation.png
+/usr/share/doc/HTML/en/dolphin/toolbar-view-appearance.png
+/usr/share/doc/HTML/en/dolphin/toolbar.png
+/usr/share/doc/HTML/en/dolphin/viewproperties-dialog.png
+
+%files lib
+%defattr(-,root,root,-)
+/usr/lib64/qt5/plugins/dolphin/kcms/libkcm_dolphingeneral.so
+/usr/lib64/qt5/plugins/dolphin/kcms/libkcm_dolphinnavigation.so
+/usr/lib64/qt5/plugins/dolphin/kcms/libkcm_dolphinviewmodes.so
+/usr/lib64/qt5/plugins/kf5/parts/dolphinpart.so
+
+%files services
+%defattr(-,root,root,-)
+/usr/lib/systemd/user/plasma-dolphin.service
+
+%files staticdev
+%defattr(-,root,root,-)
+/usr/lib64/libdolphinprivate.a
+/usr/lib64/libdolphinvcs.a
