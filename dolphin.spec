@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : dolphin
 Version  : 22.03.70
-Release  : 320
+Release  : 322
 URL      : file:///aot/build/clearlinux/packages/dolphin/dolphin-v22.03.70.tar.gz
 Source0  : file:///aot/build/clearlinux/packages/dolphin/dolphin-v22.03.70.tar.gz
 Summary  : No detailed summary available
@@ -306,6 +306,7 @@ BuildRequires : zstd-dev
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
+Patch1: 0001-Static-PGO-build.patch
 
 %description
 User Documentation
@@ -315,6 +316,7 @@ See https://userbase.kde.org/Special:myLanguage/Dolphin
 %prep
 %setup -q -n dolphin
 cd %{_builddir}/dolphin
+%patch1 -p1
 
 %build
 unset http_proxy
@@ -322,7 +324,7 @@ unset https_proxy
 unset no_proxy
 export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1640175668
+export SOURCE_DATE_EPOCH=1640175719
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -494,7 +496,7 @@ fi
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1640175668
+export SOURCE_DATE_EPOCH=1640175719
 rm -rf %{buildroot}
 pushd clr-build
 %make_install
