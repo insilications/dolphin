@@ -1,4 +1,4 @@
-From 36b5b72fb1a464fcd730b36be1541fe2de783048 Mon Sep 17 00:00:00 2001
+From 7d9171ad32fb0ae2ad4181cc68617f7dbed1f535 Mon Sep 17 00:00:00 2001
 From: Francisco Boni <boboniboni@gmail.com>
 Date: Sun, 19 Dec 2021 09:41:35 -0300
 Subject: [PATCH] Static PGO build
