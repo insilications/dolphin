@@ -23,7 +23,6 @@ dbus-dev
 docbook-xml
 dolphin
 dolphin-dev
-dolphin-plugins
 e2fsprogs-dev
 extra-cmake-modules
 extra-cmake-modules-data
