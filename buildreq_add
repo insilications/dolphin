@@ -208,7 +208,7 @@ qtsvg-dev
 qttools-dev
 qtwayland-dev
 qtx11extras-dev
-requests
+pypi-requests
 ruby
 setxkbmap
 solid-dev
