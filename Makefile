@@ -1,5 +1,5 @@
 PKG_NAME := dolphin
-URL = https://invent.kde.org/system/dolphin.git
+URL = /insilications/build/git-clr/dolphin-clr/
 ARCHIVES = 
 ARCHIVES_GIT = 
 
