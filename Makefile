@@ -1,5 +1,5 @@
 PKG_NAME := dolphin
-URL = /insilications/build/git-clr/dolphin-clr/
+URL = https://download.kde.org/stable/release-service/21.12.1/src/dolphin-21.12.1.tar.xz
 ARCHIVES = 
 ARCHIVES_GIT = 
 

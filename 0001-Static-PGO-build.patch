@@ -1,0 +1,34 @@
+From 54dde52baf561b5169ef07de3074d23ec03343bf Mon Sep 17 00:00:00 2001
+From: Francisco Boni <boboniboni@gmail.com>
+Date: Sun, 19 Dec 2021 09:41:35 -0300
+Subject: [PATCH] Static PGO build
+
+---
+ src/CMakeLists.txt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index bb898b5a7..5bec11a50 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -21,7 +21,7 @@ remove_definitions(
+ 
+ ##########################################
+ 
+-add_library(dolphinvcs SHARED)
++add_library(dolphinvcs STATIC)
+ 
+ target_sources(dolphinvcs PRIVATE
+     views/versioncontrol/kversioncontrolplugin.cpp
+@@ -56,7 +56,7 @@ install(FILES ${dolphinvcs_LIB_HEADERS} DESTINATION "${KDE_INSTALL_INCLUDEDIR}/D
+ 
+ ########### next target ###############
+ 
+-add_library(dolphinprivate SHARED)
++add_library(dolphinprivate STATIC)
+ 
+ target_sources(dolphinprivate PRIVATE
+     kitemviews/kfileitemlistview.cpp
+-- 
+2.35.0
+

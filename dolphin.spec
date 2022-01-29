@@ -5,9 +5,9 @@
 %define keepstatic 1
 Name     : dolphin
 Version  : 21.12.1
-Release  : 324
-URL      : file:///aot/build/clearlinux/packages/dolphin/dolphin-v21.12.1.tar.gz
-Source0  : file:///aot/build/clearlinux/packages/dolphin/dolphin-v21.12.1.tar.gz
+Release  : 325
+URL      : https://download.kde.org/stable/release-service/21.12.1/src/dolphin-21.12.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/21.12.1/src/dolphin-21.12.1.tar.xz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
@@ -305,6 +305,7 @@ BuildRequires : zstd-dev
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
+Patch1: 0001-Static-PGO-build.patch
 
 %description
 User Documentation
@@ -312,8 +313,9 @@ User Documentation
 See https://userbase.kde.org/Special:myLanguage/Dolphin
 
 %prep
-%setup -q -n dolphin-clr
-cd %{_builddir}/dolphin-clr
+%setup -q -n dolphin-21.12.1
+cd %{_builddir}/dolphin-21.12.1
+%patch1 -p1
 
 %build
 unset http_proxy
@@ -321,7 +323,7 @@ unset https_proxy
 unset no_proxy
 export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1643467154
+export SOURCE_DATE_EPOCH=1643468041
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -458,7 +460,7 @@ export LIBRARY_PATH="/usr/local/nvidia/lib64:/usr/local/nvidia/lib64/gbm:/usr/lo
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1643467154
+export SOURCE_DATE_EPOCH=1643468041
 rm -rf %{buildroot}
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
