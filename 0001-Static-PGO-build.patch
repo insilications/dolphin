@@ -1,14 +1,14 @@
-From 54dde52baf561b5169ef07de3074d23ec03343bf Mon Sep 17 00:00:00 2001
+From 75bf73452a84c1bf57b3b6f2108c3c3d3d7b7976 Mon Sep 17 00:00:00 2001
 From: Francisco Boni <boboniboni@gmail.com>
 Date: Sun, 19 Dec 2021 09:41:35 -0300
 Subject: [PATCH] Static PGO build
 
 ---
- src/CMakeLists.txt | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ src/CMakeLists.txt | 22 +++++++++++-----------
+ 1 file changed, 11 insertions(+), 11 deletions(-)
 
 diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
-index bb898b5a7..5bec11a50 100644
+index bb898b5a7..9e1e33071 100644
 --- a/src/CMakeLists.txt
 +++ b/src/CMakeLists.txt
 @@ -21,7 +21,7 @@ remove_definitions(
@@ -20,6 +20,23 @@ index bb898b5a7..5bec11a50 100644
  
  target_sources(dolphinvcs PRIVATE
      views/versioncontrol/kversioncontrolplugin.cpp
+@@ -34,11 +34,11 @@ target_link_libraries(
+     Qt${QT_MAJOR_VERSION}::Widgets
+ )
+ 
+-set_target_properties(dolphinvcs PROPERTIES
+-    VERSION ${DOLPHINVCS_VERSION}
+-    SOVERSION ${DOLPHINVCS_SOVERSION}
+-    EXPORT_NAME DolphinVcs
+-)
++#set_target_properties(dolphinvcs PROPERTIES
++    #VERSION ${DOLPHINVCS_VERSION}
++    #SOVERSION ${DOLPHINVCS_SOVERSION}
++    #EXPORT_NAME DolphinVcs
++#)
+ 
+ ecm_generate_headers(dolphinvcs_LIB_HEADERS
+     HEADER_NAMES
 @@ -56,7 +56,7 @@ install(FILES ${dolphinvcs_LIB_HEADERS} DESTINATION "${KDE_INSTALL_INCLUDEDIR}/D
  
  ########### next target ###############
@@ -29,6 +46,21 @@ index bb898b5a7..5bec11a50 100644
  
  target_sources(dolphinprivate PRIVATE
      kitemviews/kfileitemlistview.cpp
+@@ -169,10 +169,10 @@ if(HAVE_BALOO)
+     )
+ endif()
+ 
+-set_target_properties(dolphinprivate PROPERTIES
+-    VERSION ${DOLPHINPRIVATE_VERSION}
+-    SOVERSION ${DOLPHINPRIVATE_SOVERSION}
+-)
++#set_target_properties(dolphinprivate PROPERTIES
++    #VERSION ${DOLPHINPRIVATE_VERSION}
++    #SOVERSION ${DOLPHINPRIVATE_SOVERSION}
++#)
+ 
+ install(TARGETS dolphinprivate ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_SKIP)
+ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/dolphin_export.h DESTINATION ${KDE_INSTALL_INCLUDEDIR} COMPONENT Devel)
 -- 
-2.35.0
+2.35.1
 
